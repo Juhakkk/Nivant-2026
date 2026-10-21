@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonato NIVANT 2026 - SimRally Official Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rally: {
+                            gold: '#FFD700',
+                            goldDark: '#C7A600',
+                            red: '#E63946',
+                            carbon: '#0D0E12',
+                            card: '#161820',
+                            cardHover: '#1F222E',
+                            border: '#2A2E3D',
+                            text: '#E2E8F0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        teko: ['Teko', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0B0E;
+            background-image: radial-gradient(#1A1D28 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: #E2E8F0;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0B0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A2E3D;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD700;
+        }
+        .active-tab {
+            border-bottom: 3px solid #FFD700;
+            color: #FFD700 !important;
+            background-color: rgba(255, 215, 0, 0.06);
+        }
+        .plate-glow {
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-rally-gold selection:text-black">
+
+    <!-- ENCABEZADO PRINCIPAL -->
+    <header class="bg-rally-card border-b border-rally-border sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- LOGO Y BRANDING NIVANT -->
+            <div class="flex items-center space-x-4 cursor-pointer" onclick="switchTab('results')">
+                <div class="flex flex-col items-center justify-center bg-black border-2 border-rally-border rounded-xl px-3 py-1.5 shadow-lg group hover:border-rally-gold transition">
+                    <div class="font-teko font-extrabold text-3xl sm:text-4xl italic tracking-tighter leading-none bg-gradient-to-r from-red-600 via-white to-emerald-500 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        NRS
+                    </div>
+                    <div class="text-[9px] font-extrabold tracking-widest text-white uppercase leading-none font-sans border-t border-gray-700 pt-0.5 mt-0.5 w-full text-center">
+                        NIVANT RACING
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-teko font-extrabold tracking-wider text-white leading-none flex items-center gap-2">
+                        CAMPEONATO <span class="bg-gradient-to-r from-red-500 via-white to-emerald-400 bg-clip-text text-transparent font-black">NRS 2026</span>
+                    </h1>
+                    <p class="text-xs text-gray-400 tracking-widest font-semibold uppercase mt-0.5">
+                        🔰 NIVANT RACING SERIES • Tiempos y clasificaciones 🔰
+                    </p>
+                </div>
+            </div>
+
+            <!-- SELECTOR DE RALLIES DEL CALENDARIO -->
+            <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                <div class="relative w-full sm:w-80">
+                    <label for="eventSelector" class="sr-only">Seleccionar Evento</label>
+                    <select id="eventSelector" onchange="changeRallyEvent(this.value)" class="w-full bg-black border border-rally-border text-white text-xs rounded-lg px-3 py-2.5 focus:border-rally-gold focus:outline-none focus:ring-1 focus:ring-rally-gold transition font-bold">
+                        <option value="rally1" selected>🏁 1ª Prueba: 19 Sept. (Asfalto)</option>
+                        <option value="rally2">🏁 2ª Prueba: 3 Oct. (Asfalto)</option>
+                        <option value="rally3">🏁 3ª Prueba: 14 Nov. (Asfalto)</option>
+                        <option value="rally4">🏁 4ª Prueba: 12 Dic. (Nieve)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN DE PESTAÑAS DE REGLAMENTOS Y RESULTADOS -->
+        <nav class="border-t border-rally-border bg-black/80 overflow-x-auto scrollbar-none">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap space-x-2 text-xs md:text-sm font-bold uppercase tracking-wider">
+                <button onclick="switchTab('results')" id="tab-results" class="nav-tab active-tab px-5 py-3.5 text-gray-300 hover:text-rally-gold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-stopwatch text-rally-gold text-base"></i> Resultados
+                </button>
+                <button onclick="switchTab('standings')" id="tab-standings" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-rally-gold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-trophy text-rally-gold text-base"></i> Clasificación
+                </button>
+                <button onclick="switchTab('rules')" id="tab-rules" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-rally-gold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-book-bookmark text-rally-gold text-base"></i> Regl. Deportivo
+                </button>
+                <button onclick="switchTab('ninco')" id="tab-ninco" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-rally-gold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-car-side text-rally-gold text-base"></i> Téc. Ninco
+                </button>
+                <button onclick="switchTab('avant')" id="tab-avant" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-rally-gold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-gauge-high text-rally-gold text-base"></i> Téc. Avant Slot
+                </button>
+                <button onclick="switchTab('github')" id="tab-github" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-purple-400 flex items-center gap-2 transition">
+                    <i class="fa-brands fa-github text-purple-400 text-base"></i> Guía GitHub Pages
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- ========================================================= -->
+        <!-- SECCIÓN 1: RESULTADOS DEL RALLER                          -->
+        <!-- ========================================================= -->
+        <section id="content-results" class="tab-content space-y-6">
+            <!-- FILTROS Y CONTROLES -->
+            <div class="bg-rally-card border border-rally-border rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 border-b border-rally-border pb-4">
+                    <div>
+                        <span class="bg-rally-gold text-black text-[10px] sm:text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">EVENTO ACTUAL</span>
+                        <h2 id="currentEventTitle" class="text-2xl sm:text-3xl font-teko font-extrabold text-white leading-none mt-1">
+                            1ª PRUEBA: 19 DE SEPTIEMBRE 2026
+                        </h2>
+                        <p class="text-xs text-gray-400">Tiempos scratch y por categoría en tiempo real</p>
+                    </div>
+
+                    <!-- BÚSQUEDA Y FILTRO DE CATEGORÍA -->
+                    <div class="flex flex-wrap sm:flex-nowrap items-center gap-3">
+                        <div class="relative w-full sm:w-48">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-500 text-xs"></i>
+                            <input type="text" id="driverSearch" onkeyup="filterResults()" placeholder="Buscar piloto..." class="w-full bg-black border border-rally-border text-white text-xs rounded-lg pl-9 pr-3 py-2 focus:border-rally-gold focus:outline-none">
+                        </div>
+                        <select id="categoryFilter" onchange="filterResults()" class="w-full sm:w-auto bg-black border border-rally-border text-white text-xs rounded-lg px-3 py-2 focus:border-rally-gold focus:outline-none font-bold">
+                            <option value="ALL">Todas las Categorías</option>
+                            <option value="N1">N1 (Ninco Transversal)</option>
+                            <option value="N2">N2 (Ninco Lineal)</option>
+                            <option value="N3">N3 (Ninco S1600)</option>
+                            <option value="AV1">AV1 (Avant Transversal)</option>
+                            <option value="AV2">AV2 (Avant Lineal)</option>
+                            <option value="INF">Infantil</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- TABLA DE TIEMPOS -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-black/80 text-gray-400 font-teko text-base sm:text-lg tracking-wider border-b border-rally-border uppercase">
+                                <th class="p-3 text-center w-12">Pos</th>
+                                <th class="p-3">Piloto / Coche</th>
+                                <th class="p-3 text-center">Cat.</th>
+                                <th class="p-3 text-right">Etapa 1</th>
+                                <th class="p-3 text-right">Etapa 2</th>
+                                <th class="p-3 text-right">Penal.</th>
+                                <th class="p-3 text-right text-rally-gold">Tiempo Total</th>
+                                <th class="p-3 text-right">Diferencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody" class="divide-y divide-rally-border/40 font-mono">
+                            <!-- Inyectado dinámicamente con JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECCIÓN 2: CLASIFICACIÓN GENERAL                           -->
+        <!-- ========================================================= -->
+        <section id="content-standings" class="tab-content hidden space-y-6">
+            <div class="bg-rally-card border border-rally-border rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-rally-border pb-4">
+                    <div>
+                        <span class="bg-rally-gold text-black text-[10px] sm:text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">CAMPEONATO NRS 2026</span>
+                        <h2 class="text-2xl sm:text-3xl font-teko font-extrabold text-white leading-none mt-1">
+                            CLASIFICACIÓN GENERAL ACUMULADA — NIVANT RACING SERIES
+                        </h2>
+                        <p class="text-xs text-gray-400">Puntuación global por categoría acumulada en las 4 pruebas</p>
+                    </div>
+                    <select id="standingsCategoryFilter" onchange="renderStandings()" class="bg-black border border-rally-border text-white text-xs rounded-lg px-3 py-2 focus:border-rally-gold focus:outline-none font-bold">
+                        <option value="N1">N1 (Ninco Transversal)</option>
+                        <option value="N2">N2 (Ninco Lineal)</option>
+                        <option value="N3">N3 (Ninco S1600)</option>
+                        <option value="AV1">AV1 (Avant Transversal)</option>
+                        <option value="AV2">AV2 (Avant Lineal)</option>
+                        <option value="INF">Infantil</option>
+                    </select>
+                </div>
+
+                <!-- TABLA CLASIFICACIÓN GENERAL -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-black/80 text-gray-400 font-teko text-base sm:text-lg tracking-wider border-b border-rally-border uppercase">
+                                <th class="p-3 text-center w-12">Pos</th>
+                                <th class="p-3">Piloto</th>
+                                <th class="p-3 text-center">1ª Prueba</th>
+                                <th class="p-3 text-center">2ª Prueba</th>
+                                <th class="p-3 text-center">3ª Prueba</th>
+                                <th class="p-3 text-center">4ª Prueba</th>
+                                <th class="p-3 text-right text-rally-gold">Puntos Totales</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standingsTableBody" class="divide-y divide-rally-border/40 font-mono">
+                            <!-- Inyectado dinámicamente con JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECCIÓN 3: REGLAMENTO DEPORTIVO                           -->
+        <!-- ========================================================= -->
+        <section id="content-rules" class="tab-content hidden space-y-6">
+            <div class="bg-rally-card border border-rally-border rounded-2xl p-6 shadow-2xl space-y-6">
+                <div class="border-b border-rally-border pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="bg-rally-gold text-black text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">OFICIAL 2026</span>
+                        <h2 class="text-3xl sm:text-4xl font-teko font-extrabold text-white leading-none mt-2">
+                            REGLAMENTO DEPORTIVO — NIVANT RACING SERIES (NRS 2026)
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
+                            <i class="fa-solid fa-flag-checkered text-rally-gold"></i>
+                            Organizado por: <strong class="text-white">CLUB SLOT LUCUS (CSL)</strong>
+                        </p>
+                    </div>
+                    <div class="bg-black border border-rally-border px-4 py-2 rounded-xl text-right">
+                        <div class="text-[10px] text-gray-400 uppercase font-bold">Inscripción Oficial</div>
+                        <div class="text-rally-gold font-bold text-sm">3€ (1 coche) • 5€ (2 coches)</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- ARTÍCULOS PRINCIPALES (COLUMNA IZQUIERDA) -->
+                    <div class="space-y-6">
+
+                        <!-- 1. FORMATO DEL CAMPEONATO -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-rally-gold flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-rally-gold text-black text-xs font-black inline-flex items-center justify-center">1</span>
+                                FORMATO DEL CAMPEONATO
+                            </h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Constará de <strong class="text-white">4 carreras</strong>. En cada rallye se otorgará una puntuación en cada grupo para sumar a lo largo del campeonato los puntos que determinarán el resultado final.
+                            </p>
+                        </div>
+
+                        <!-- 2. FORMATO DE LAS CARRERAS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-rally-gold flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-rally-gold text-black text-xs font-black inline-flex items-center justify-center">2</span>
+                                FORMATO DE LAS CARRERAS
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Tanda 1:</strong> Verificaciones 15:30 h, inicio 16:00 h.</li>
+                                <li>Cada piloto podrá participar con un coche por copa.</li>
+                                <li>Los rallyes constarán de <strong class="text-white">5 tramos y 2 etapas</strong> por copa, el tiempo de los cuales se irá sumando para elaborar la clasificación final de la carrera.</li>
+                                <li class="text-rally-gold italic text-[11px]">*Según el número de participantes se aumentará una pasada a una de las copas por sorteo.</li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. INSCRIPCIONES -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-rally-gold flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-rally-gold text-black text-xs font-black inline-flex items-center justify-center">3</span>
+                                INSCRIPCIONES
+                            </h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Es obligatorio realizar la inscripción previa a la prueba a los organizadores. El precio de la inscripción será: <strong class="text-rally-gold">3 euros (un coche)</strong> y <strong class="text-rally-gold">5 euros (dos coches)</strong>.
+                            </p>
+                            <p class="text-xs text-gray-400 italic">
+                                La inscripción deberá ser abonada en el momento de entrar el coche en el parque cerrado. La realización de la inscripción comporta el conocimiento y la plena aceptación del reglamento técnico y deportivo.
+                            </p>
+                        </div>
+
+                        <!-- 4 Y 5. COPAS ADMITIDAS Y CATEGORÍAS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-rally-gold flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-rally-gold text-black text-xs font-black inline-flex items-center justify-center">4</span>
+                                COPAS Y CATEGORÍAS ADMITIDAS
+                            </h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                <div class="bg-rally-card border border-rally-border p-2.5 rounded-lg text-center">
+                                    <div class="text-xs font-bold text-emerald-400">COPA NINCO</div>
+                                    <div class="text-[10px] text-gray-400 mt-1">
+                                        • <strong>N1:</strong> Transversal<br>
+                                        • <strong>N2:</strong> Lineal<br>
+                                        • <strong>N3:</strong> S1600
+                                    </div>
+                                </div>
+                                <div class="bg-rally-card border border-rally-border p-2.5 rounded-lg text-center">
+                                    <div class="text-xs font-bold text-blue-400">COPA AVANT</div>
+                                    <div class="text-[10px] text-gray-400 mt-1">
+                                        • <strong>AV1:</strong> Transversal<br>
+                                        • <strong>AV2:</strong> Lineal
+                                    </div>
+                                </div>
+                                <div class="bg-rally-card border border-rally-border p-2.5 rounded-lg text-center">
+                                    <div class="text-xs font-bold text-cyan-400">INFANTIL</div>
+                                    <div class="text-[10px] text-gray-400 mt-1">
+                                        Menores de 14 años.<br>Marca Scaleauto con reglamento correspondiente.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. CALENDARIO -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-rally-gold flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-rally-gold text-black text-xs font-black inline-flex items-center justify-center">6</span>
+                                CALENDARIO DE PRUEBAS NRS 2026
+                            </h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                                <div class="bg-rally-card p-2 rounded border border-rally-border font-bold text-white">
+                                    <span class="block text-[10px] text-gray-400">19 SEPTIEMBRE</span>
+                                    <span>ASFALTO</span>
+                                </div>
+                                <div class="bg-rally-card p-2 rounded border border-rally-border font-bold text-white">
+                                    <span class="block text-[10px] text-gray-400">3 OCTUBRE</span>
+                                    <span>ASFALTO</span>
+                                </div>
+                                <div class="bg-rally-card p-2 rounded border border-rally-border font-bold text-white">
+                                    <span class="block text-[10px] text-gray-400">14 NOVIEMBRE</span>
+                                    <span>ASFALTO</span>
+                                </div>
+                                <div class="bg-rally-card p-2 rounded border border-rally-border font-bold text-white">
+                                    <span class="block text-[10px] text-cyan-400">12 DICIEMBRE</span>
+                                    <span class="text-cyan-300">NIEVE</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 15. PENALIZACIONES TÉCNICAS -->
+                        <div class="bg-black/60 border border-red-900/40 rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-red-400 flex items-center gap-2">
+                                <i class="fa-solid fa-wrench"></i>
+                                15. PENALIZACIONES TÉCNICAS
+                            </h3>
+                            <div class="space-y-2 text-xs">
+                                <div class="bg-red-950/20 border border-red-900/30 p-2 rounded text-gray-300">
+                                    <strong class="text-red-400 block">EXCLUSIÓN TÉCNICA:</strong>
+                                    Coches no admitidos, anomalías en el motor, imanes suplementarios, uso de aditivos, anomalías en la transmisión, incumplimiento de modificaciones mínimas, incumplimiento de características de la carrocería, falta de cristales, mecánica o chasis a la vista o falta de habitáculo, chasis no homologado o deformado, bancadas de motor no homologadas, ejes no reglamentarios, anomalías en la guía, llantas no homologadas, modificación o falta de corona, cambiar neumáticos entre tramos, incumplimiento de características de emplazamiento de la guía.
+                                </div>
+                                <div class="bg-rally-card border border-rally-border p-2 rounded text-gray-300 space-y-1">
+                                    <strong class="text-rally-gold block">PENALIZACIONES DE TIEMPO:</strong>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-0.5 text-[11px]">
+                                        <span>• Falta de dorsales o placas: <strong class="text-white">10" / U.</strong></span>
+                                        <span>• Vidrios opacos si no es de serie: <strong class="text-white">30"</strong></span>
+                                        <span>• Falta de luces simuladas: <strong class="text-white">10" / U.</strong></span>
+                                        <span>• Falta de elem. aerodinámicos: <strong class="text-white">10" / U.</strong></span>
+                                        <span>• Pilotos sin diferenciar / un color: <strong class="text-white">20"</strong></span>
+                                        <span>• Falta piloto, copiloto o volante: <strong class="text-white">30"</strong></span>
+                                        <span>• Habitáculo sin diferenciar: <strong class="text-white">20"</strong></span>
+                                        <span>• Falta de tornillos / anomalías: <strong class="text-white">10" / U.</strong></span>
+                                        <span>• Anomalías medidas llanta: <strong class="text-white">30" / U.</strong></span>
+                                        <span>• Ruedas no giran / no tocan pista: <strong class="text-white">30"</strong></span>
+                                        <span>• Anomalías en la suspensión: <strong class="text-white">30" / U.</strong></span>
+                                        <span>• Anomalías en las poleas: <strong class="text-white">30"</strong></span>
+                                        <span>• Anomalías goma de tracción: <strong class="text-white">30"</strong></span>
+                                        <span>• Cojinetes no reglamentarios: <strong class="text-white">20" / U.</strong></span>
+                                        <span>• Cambios rodamientos/cojinetes: <strong class="text-white">30" / U.</strong></span>
+                                        <span>• Fijación de cojinetes no regl.: <strong class="text-white">30" / U.</strong></span>
+                                        <span>• Ejes no giran en proporción 1:1: <strong class="text-white">60"</strong></span>
+                                        <span>• Piñón no gira en proporción 1:1: <strong class="text-white">60"</strong></span>
+                                        <span>• Anomalías en piñones: <strong class="text-white">60" / U.</strong></span>
+                                        <span>• Anomalías modelo llantas: <strong class="text-white">10" / U.</strong></span>
+                                        <span>• Incumplimiento medidas ejes: <strong class="text-white">10" / mm</strong></span>
+                                        <span>• Neumático no cubre la llanta: <strong class="text-white">30"</strong></span>
+                                    </div>
+                                </div>
+                                <p class="text-[10px] text-gray-400 italic">
+                                    *Las penalizaciones que no conlleven la exclusión del piloto se aplicarán en cada etapa mientras no sean subsanadas.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECCIÓN 4: REGLAMENTO TÉCNICO NINCO                       -->
+        <!-- ========================================================= -->
+        <section id="content-ninco" class="tab-content hidden space-y-6">
+            <div class="bg-rally-card border border-rally-border rounded-2xl p-6 shadow-2xl space-y-6">
+                <!-- CABECERA DE LA SECCIÓN -->
+                <div class="border-b border-rally-border pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="bg-emerald-500 text-black text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">OFICIAL 2026</span>
+                        <h2 class="text-3xl sm:text-4xl font-teko font-extrabold text-white leading-none mt-2">
+                            REGLAMENTO TÉCNICO — COPA NINCO 2026
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
+                            <i class="fa-solid fa-wrench text-emerald-400"></i>
+                            Especificaciones técnicas y de preparación oficial para las categorías N1, N2 y N3
+                        </p>
+                    </div>
+                    <div class="bg-black border border-rally-border px-4 py-2 rounded-xl text-right">
+                        <div class="text-[10px] text-gray-400 uppercase font-bold">Categorías Admitidas</div>
+                        <div class="text-emerald-400 font-bold text-sm">N1 Transversal • N2 Lineal • N3 S1600</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- COLUMNA IZQUIERDA (ARTÍCULOS 1 A 8) -->
+                    <div class="space-y-6">
+
+                        <!-- 1. COCHES ADMITIDOS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">1</span>
+                                COCHES ADMITIDOS
+                            </h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Se admiten todos los modelos de la marca <strong class="text-white">Ninco a escala 1:32</strong> de coches de rallys que hayan corrido con reglamento FIA. En caso de duda deberá demostrarse la participación de dicho vehículo en un rally real.
+                            </p>
+                            <div class="grid grid-cols-3 gap-2 mt-2 text-center text-xs">
+                                <div class="bg-rally-card border border-rally-border p-2 rounded">
+                                    <strong class="text-emerald-400 block font-bold">N1</strong>
+                                    <span class="text-[11px] text-gray-300">Motor Transversal</span>
+                                </div>
+                                <div class="bg-rally-card border border-rally-border p-2 rounded">
+                                    <strong class="text-emerald-400 block font-bold">N2</strong>
+                                    <span class="text-[11px] text-gray-300">Motor Lineal</span>
+                                </div>
+                                <div class="bg-rally-card border border-rally-border p-2 rounded">
+                                    <strong class="text-emerald-400 block font-bold">N3</strong>
+                                    <span class="text-[11px] text-gray-300">Categoría S1600</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. CARROCERÍA -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">2</span>
+                                CARROCERÍA
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Material:</strong> Plástico inyectado de serie. Prohibido lexan o acetato en cristales y habitáculo.</li>
+                                <li><strong class="text-white">Supresiones permitidas:</strong> Retrovisores, limpiaparabrisas y antenas si son piezas independientes.</li>
+                                <li><strong class="text-white">Habitáculo:</strong> Original de plástico inyectado. Si no incluye copiloto, debe colocarse uno de material y aspecto similar.</li>
+                                <li><strong class="text-white">Decoración:</strong> Libre. Obligatorios 2 dorsales (puertas) y 1 placa de rally.</li>
+                                <li><strong class="text-white">Iluminación:</strong> Se permite eliminar o añadir leds/bombillas sin modificar la carrocería de serie.</li>
+                                <li><strong class="text-white">Tetones:</strong> Se permite reforzar con casquillos de marcas de slot sin alterar la altura original.</li>
+                                <li class="text-red-400 font-semibold">• Prohibido todo tipo de contrapesos en la carrocería.</li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. CHASIS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">3</span>
+                                CHASIS Y APOYO
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li>Original en plástico inyectado determinado por el fabricante para el modelo.</li>
+                                <li>Fijado a la carrocería mediante tornillos en posición vertical.</li>
+                                <li>Se permite agrandar los agujeros de alojamientos para facilitar la basculación (sin alterar soportes).</li>
+                                <li><strong class="text-white">Apoyo:</strong> En reposo sobre tramo plano, las <strong class="text-emerald-400">4 ruedas deben tocar la pista</strong>.</li>
+                                <li>Bancada y soportes de motor originales sin modificación.</li>
+                                <li class="text-red-400 font-semibold">• Sin imanes suplementarios ni contrapesos. Prohibidos frenos adicionales.</li>
+                            </ul>
+                        </div>
+
+                        <!-- 4. PESOS Y MEDIDAS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">4</span>
+                                PESOS Y MEDIDAS
+                            </h3>
+                            <div class="bg-rally-card border border-rally-border p-2.5 rounded-lg text-xs space-y-1">
+                                <div>• <strong class="text-emerald-400">Peso mínimo de carrocería:</strong> <strong class="text-white">19 gramos</strong> (en orden de marcha, sin tornillos).</div>
+                                <div>• <strong class="text-emerald-400">Ancho máximo de ejes:</strong> No puede superar el ancho máximo de la carrocería.</div>
+                                <div class="text-gray-400 text-[11px] pt-1 border-t border-rally-border/50">
+                                    <strong>Formas de llegar al peso mínimo:</strong> cinta adhesiva exclusivamente en bandeja de pilotos, pintura/barniz, elementos decorativos (barras, extintores, rueda de repuesto) o adición de plomo en la bandeja de pilotos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5, 6, 7 Y 8. MECÁNICA: TRANSMISIÓN, EJES, COJINETES Y PIÑÓN/CORONA -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">5-8</span>
+                                TRANSMISIÓN, EJES Y COJINETES
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-300">
+                                <div><strong class="text-white">5. Transmisión:</strong> Original del fabricante. Relación piñón/corona original de comercialización. Piñón solidario en proporción 1:1.</div>
+                                <div><strong class="text-white">6. Ejes:</strong> Originales Ninco, metálicos macizos de una sola pieza. Dif. de ancho tren trasero/delantero (sin neumáticos) máximo <strong class="text-emerald-400">7mm</strong>.</div>
+                                <div><strong class="text-white">7. Cojinetes:</strong> Originales Ninco sin modificación. <strong class="text-red-400">Prohibidos rodamientos</strong>. Se permite fijar al chasis en altura original (prohibido fijar en coches con suspensión).</div>
+                                <div><strong class="text-white">8. Piñones y Coronas:</strong> Originales Ninco. Piñón motor longitudinal en <strong class="text-yellow-400">bronce</strong>; piñón motor transversal en <strong class="text-gray-300">plástico</strong>.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- COLUMNA DERECHA (ARTÍCULOS 9 A 16) -->
+                    <div class="space-y-6">
+
+                        <!-- 9, 10 Y 11. POLEAS, LLANTAS Y SUSPENSIONES -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">9-11</span>
+                                POLEAS, LLANTAS Y SUSPENSIONES
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-300">
+                                <div><strong class="text-white">9. Poleas/Correás:</strong> Originales Ninco de plástico. Prohibido alterar o añadir elementos externos.</div>
+                                <div><strong class="text-white">10. Llantas:</strong> De plástico de cualquier fabricante (tapacubos obligatorios si son de fondo plano). 4 llantas iguales salvo configuración de serie distinta.</div>
+                                <div><strong class="text-white">11. Suspensiones:</strong> De origen. Se permite cambiar la dureza de muelles dentro de la gama Ninco.</div>
+                            </div>
+                        </div>
+
+                        <!-- 12, 13 Y 14. GUÍA, CABLEADO Y TRENCILLAS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">12-14</span>
+                                GUÍA, TORNILLERÍA Y TRENCILLAS
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-300">
+                                <div><strong class="text-white">12. Guía:</strong> Única y libre dentro de la gama Ninco. Se permite recortar por abajo, lijar laterales o acortar porta-escobillas. Se admite guía pivotante con muelle sin modificar chasis. Se permite quitar el muelle.</div>
+                                <div><strong class="text-white">13. Tornillería y Cableado:</strong> Libres.</div>
+                                <div><strong class="text-white">14. Trencillas:</strong> Libres. <strong class="text-red-400">Prohibidos los aditivos.</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- 15. MOTOR Y RESTRICCIÓN MAGNÉTICA -->
+                        <div class="bg-black/60 border border-emerald-500/30 rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center justify-between">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">15</span>
+                                    MOTOR Y CAMPO MAGNÉTICO
+                                </span>
+                                <span class="bg-emerald-500 text-black text-[10px] font-black px-2 py-0.5 rounded">MÁX. 6 GAUSS</span>
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Especificación:</strong> Único y libre dentro de la gama <strong class="text-emerald-400">Ninco</strong> de caja cerrada compacta.</li>
+                                <li>Prohibido sustituir, cambiar o manipular componentes eléctricos, mecánicos o electrónicos internos.</li>
+                                <li>Se permite eliminar antiparasitarios externos de serie. Se permite tapar motor con una capa de cinta adhesiva celo.</li>
+                                <li class="bg-black p-2.5 rounded border border-emerald-500/40 text-emerald-300 font-mono text-[11px] font-bold">
+                                    🧲 U.M.S. Máximo: 6 Gauss (+0.3 tolerancia) medido en chasis a 5V. En ningún caso se podrá superar al incrementar el voltaje.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 16. NEUMÁTICOS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-emerald-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-black inline-flex items-center justify-center">16</span>
+                                NEUMÁTICOS
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li>Comercializados por marca de slot y fabricados en <strong class="text-white">goma negra</strong>.</li>
+                                <li>Se pueden limar, dibujar, rebajar y cortar mientras cubran totalmente la llanta y giren solidariamente con ella.</li>
+                                <li class="text-red-400 font-semibold">• Prohibido cambiar neumáticos entre tramos (salvo autorización del director).</li>
+                                <li class="text-red-400 font-semibold">• Prohibido el uso de aditivos.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECCIÓN 5: REGLAMENTO TÉCNICO AVANT SLOT                  -->
+        <!-- ========================================================= -->
+        <section id="content-avant" class="tab-content hidden space-y-6">
+            <div class="bg-rally-card border border-rally-border rounded-2xl p-6 shadow-2xl space-y-6">
+                <!-- CABECERA DE LA SECCIÓN -->
+                <div class="border-b border-rally-border pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="bg-blue-500 text-black text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">OFICIAL 2026</span>
+                        <h2 class="text-3xl sm:text-4xl font-teko font-extrabold text-white leading-none mt-2">
+                            REGLAMENTO TÉCNICO — COPA AVANT SLOT 2026
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
+                            <i class="fa-solid fa-wrench text-blue-400"></i>
+                            Especificaciones técnicas y de preparación oficial para las categorías AV1 y AV2
+                        </p>
+                    </div>
+                    <div class="bg-black border border-rally-border px-4 py-2 rounded-xl text-right">
+                        <div class="text-[10px] text-gray-400 uppercase font-bold">Categorías Admitidas</div>
+                        <div class="text-blue-400 font-bold text-sm">AV1 Transversal • AV2 Lineal</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- COLUMNA IZQUIERDA (ARTÍCULOS 1 A 8) -->
+                    <div class="space-y-6">
+
+                        <!-- 1. COCHES ADMITIDOS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">1</span>
+                                COCHES ADMITIDOS
+                            </h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Se admiten todos los modelos de la marca <strong class="text-white">Avant Slot a escala 1:32</strong> de coches de rallys que hayan corrido con reglamento FIA. En caso de duda deberá demostrarse la participación de dicho vehículo en un rally real.
+                            </p>
+                            <div class="grid grid-cols-2 gap-2 mt-2 text-center text-xs">
+                                <div class="bg-rally-card border border-rally-border p-2 rounded">
+                                    <strong class="text-blue-400 block font-bold">AV1</strong>
+                                    <span class="text-[11px] text-gray-300">Motor Transversal</span>
+                                </div>
+                                <div class="bg-rally-card border border-rally-border p-2 rounded">
+                                    <strong class="text-blue-400 block font-bold">AV2</strong>
+                                    <span class="text-[11px] text-gray-300">Motor Lineal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. CARROCERÍA -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">2</span>
+                                CARROCERÍA
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Material:</strong> Plástico inyectado de serie. Cristales de plástico inyectado transparente (prohibido acetato).</li>
+                                <li><strong class="text-white">Supresiones permitidas:</strong> Retrovisores, limpiaparabrisas y antenas si son piezas independientes.</li>
+                                <li><strong class="text-white">Habitáculo:</strong> Original de plástico inyectado o lexan. En vehículos sin lexan de serie se permite uno de otro fabricante de iguales características (piloto/copiloto independientes en plástico o resina).</li>
+                                <li><strong class="text-white">Copiloto:</strong> Si el habitáculo no lo incluye, debe colocarse uno del mismo material y aspecto similar al piloto.</li>
+                                <li><strong class="text-white">Decoración:</strong> Libre. Obligatorios 2 dorsales (puertas) y 1 placa de rally.</li>
+                                <li><strong class="text-white">Iluminación:</strong> Se permite eliminar o añadir leds/bombillas sin modificar la carrocería de serie.</li>
+                                <li><strong class="text-white">Tetones:</strong> Se permite reforzar con casquillos de marcas de slot sin alterar la altura original.</li>
+                                <li class="text-red-400 font-semibold">• Prohibido todo tipo de contrapesos en la carrocería.</li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. CHASIS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">3</span>
+                                CHASIS Y APOYO
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li>Original en plástico inyectado determinado por Avant Slot para el modelo.</li>
+                                <li>Fijado a la carrocería mediante tornillos en posición vertical.</li>
+                                <li>Se permite agrandar los agujeros de alojamientos para facilitar la basculación (sin alterar soportes).</li>
+                                <li><strong class="text-white">Apoyo:</strong> En reposo sobre tramo plano, las <strong class="text-blue-400">4 ruedas deben tocar la pista</strong>.</li>
+                                <li>Bancada y soportes de motor originales sin modificación.</li>
+                                <li class="text-red-400 font-semibold">• Sin imanes suplementarios ni contrapesos. Prohibidos frenos adicionales.</li>
+                            </ul>
+                        </div>
+
+                        <!-- 4. PESOS Y MEDIDAS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">4</span>
+                                PESOS Y MEDIDAS
+                            </h3>
+                            <div class="bg-rally-card border border-rally-border p-2.5 rounded-lg text-xs space-y-1">
+                                <div>• <strong class="text-blue-400">Peso mínimo de carrocería:</strong> <strong class="text-white">17 gramos</strong> (en orden de marcha, sin tornillos).</div>
+                                <div>• <strong class="text-blue-400">Ancho máximo de ejes:</strong> No puede superar el ancho máximo de la carrocería.</div>
+                                <div class="text-gray-400 text-[11px] pt-1 border-t border-rally-border/50">
+                                    <strong>Formas de llegar al peso mínimo:</strong> cinta adhesiva exclusivamente en bandeja de pilotos, pintura/barniz, elementos decorativos (barras, extintores, rueda de repuesto) o adición de plomo en la bandeja de pilotos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5, 6, 7 Y 8. MECÁNICA: TRANSMISIÓN, EJES, COJINETES Y PIÑÓN/CORONA -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">5-8</span>
+                                TRANSMISIÓN, EJES Y COJINETES
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-300">
+                                <div><strong class="text-white">5. Transmisión:</strong> Original dispuesta por Avant Slot. Piñón solidario 1:1 e incidencia directa en corona. Relación piñón/corona comercializada de origen.</div>
+                                <div><strong class="text-white">6. Ejes:</strong> Originales Avant Slot, metálicos macizos y de una sola pieza. Dif. máximo de ancho entre ejes delantero/trasero: <strong class="text-blue-400">7mm</strong>.</div>
+                                <div><strong class="text-white">7. Cojinetes:</strong> Originales Avant Slot sin modificación. <strong class="text-red-400">Prohibidos rodamientos</strong>. Se permite fijar al chasis conservando lugar y altura original.</div>
+                                <div><strong class="text-white">8. Piñón/Corona:</strong> De cualquier fabricante de slot, sin modificación y respetando la relación obligatoria.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- COLUMNA DERECHA (ARTÍCULOS 9 A 16) -->
+                    <div class="space-y-6">
+
+                        <!-- 9, 10 Y 11. POLEAS, LLANTAS Y SUSPENSIONES -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">9-11</span>
+                                POLEAS, LLANTAS Y SUSPENSIONES
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-300">
+                                <div><strong class="text-white">9. Poleas/Correas:</strong> Originales Avant Slot. Prohibido alterar características o añadir elementos externos.</div>
+                                <div><strong class="text-white">10. Llantas:</strong> Plástico o aluminio de la marca <strong class="text-white">Avant Slot</strong> (tapacubos obligatorios si son de fondo plano). 4 llantas iguales salvo configuración de serie distinta.</div>
+                                <div><strong class="text-white">11. Suspensiones:</strong> De origen. Se permite cambiar la dureza de amortiguadores o muelles dentro de la gama Avant Slot.</div>
+                            </div>
+                        </div>
+
+                        <!-- 12, 13 Y 14. GUÍA, CABLEADO Y TRENCILLAS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">12-14</span>
+                                GUÍA, TORNILLERÍA Y TRENCILLAS
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-300">
+                                <div><strong class="text-white">12. Guía:</strong> Única y libre dentro de las comercializadas por marcas de slot. Permitido recortes/lijado sin deformar. Se admite guía pivotante Ninco con muelle sin modificar chasis. Se permite quitar el muelle.</div>
+                                <div><strong class="text-white">13. Tornillería y Cableado:</strong> Libres.</div>
+                                <div><strong class="text-white">14. Trencillas:</strong> Libres. <strong class="text-red-400">Prohibidos los aditivos.</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- 15. MOTOR Y RESTRICCIÓN MAGNÉTICA -->
+                        <div class="bg-black/60 border border-blue-500/30 rounded-xl p-4 space-y-3">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center justify-between">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">15</span>
+                                    MOTOR Y CAMPO MAGNÉTICO
+                                </span>
+                                <span class="bg-blue-500 text-black text-[10px] font-black px-2 py-0.5 rounded">MÁX. 10 GAUSS</span>
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Especificación:</strong> Único y libre dentro de la gama <strong class="text-blue-400">Avant Slot</strong> de caja cerrada compacta.</li>
+                                <li>Prohibido sustituir, cambiar o manipular componentes eléctricos, mecánicos o electrónicos internos.</li>
+                                <li>Se permite eliminar antiparasitarios externos de serie. Se permite tapar motor con una capa de cinta adhesiva celo.</li>
+                                <li class="bg-black p-2.5 rounded border border-blue-500/40 text-blue-300 font-mono text-[11px] font-bold">
+                                    🧲 U.M.S. Máximo: 10 Gauss (+0.3 tolerancia) medido en chasis a 5V. En ningún caso se podrá superar al incrementar el voltaje.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 16. NEUMÁTICOS -->
+                        <div class="bg-black/60 border border-rally-border rounded-xl p-4 space-y-2">
+                            <h3 class="text-lg font-teko font-bold text-blue-400 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-blue-500 text-black text-xs font-black inline-flex items-center justify-center">16</span>
+                                NEUMÁTICOS
+                            </h3>
+                            <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                                <li>Comercializados por marca de slot y fabricados en <strong class="text-white">goma negra</strong>.</li>
+                                <li>Se pueden limar, dibujar, rebajar y cortar mientras cubran totalmente la llanta y giren solidariamente con ella.</li>
+                                <li class="text-red-400 font-semibold">• Prohibido cambiar neumáticos entre tramos (salvo autorización del director).</li>
+                                <li class="text-red-400 font-semibold">• Prohibido el uso de aditivos.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECCIÓN 6: GUÍA PASO A PASO PARA GITHUB PAGES              -->
+        <!-- ========================================================= -->
+        <section id="content-github" class="tab-content hidden space-y-6">
+            <div class="bg-rally-card border border-rally-border rounded-2xl p-6 shadow-2xl space-y-6">
+                <div class="border-b border-rally-border pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="bg-purple-600 text-white text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">HOSTING GRATUITO</span>
+                        <h2 class="text-3xl sm:text-4xl font-teko font-extrabold text-white leading-none mt-2">
+                            CÓMO PUBLICAR TU WEB EN GITHUB PAGES
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
+                            <i class="fa-brands fa-github text-purple-400"></i>
+                            Guía rápida para alojar la web oficial de la competición gratis y online en 5 minutos
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- PASO 1 Y 2 -->
+                    <div class="bg-black/60 border border-rally-border rounded-xl p-5 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white font-black flex items-center justify-center font-teko text-xl">1</span>
+                            <h3 class="text-lg font-teko font-bold text-white">Crear un cuenta y repositorio en GitHub</h3>
+                        </div>
+                        <ol class="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
+                            <li>Entra en <a href="https://github.com" target="_blank" class="text-purple-400 underline">github.com</a> y crea una cuenta gratuita si aún no tienes una.</li>
+                            <li>Haz clic en el botón <strong class="text-white">"+"</strong> (arriba a la derecha) y selecciona <strong class="text-white">"New repository"</strong>.</li>
+                            <li>Nombra el repositorio (ejemplo: <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">nivant-rally-2026</code>).</li>
+                            <li>Asegúrate de dejarlo marcado como <strong class="text-white">Public</strong>.</li>
+                            <li>Haz clic en <strong class="text-white">"Create repository"</strong>.</li>
+                        </ol>
+                    </div>
+
+                    <!-- PASO 3 Y 4 -->
+                    <div class="bg-black/60 border border-rally-border rounded-xl p-5 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white font-black flex items-center justify-center font-teko text-xl">2</span>
+                            <h3 class="text-lg font-teko font-bold text-white">Subir el archivo HTML</h3>
+                        </div>
+                        <ol class="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
+                            <li>Dentro de tu nuevo repositorio, haz clic en <strong class="text-white">"uploading an existing file"</strong>.</li>
+                            <li>Guarda todo el código de esta página como un archivo llamado estrictamente <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-yellow-400 font-bold">index.html</code> en tu ordenador.</li>
+                            <li>Arrastra <code class="text-yellow-400">index.html</code> a la pantalla de GitHub.</li>
+                            <li>Haz clic en el botón verde <strong class="text-white">"Commit changes"</strong> abajo de la página.</li>
+                        </ol>
+                    </div>
+
+                    <!-- PASO 5 -->
+                    <div class="bg-black/60 border border-rally-border rounded-xl p-5 space-y-3 md:col-span-2">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white font-black flex items-center justify-center font-teko text-xl">3</span>
+                            <h3 class="text-lg font-teko font-bold text-white">Activar GitHub Pages</h3>
+                        </div>
+                        <ol class="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
+                            <li>Dentro de tu repositorio en GitHub, ve a la pestaña superior <strong class="text-white"><i class="fa-solid fa-gear"></i> Settings</strong>.</li>
+                            <li>En el menú lateral izquierdo, haz clic en <strong class="text-white"><i class="fa-solid fa-globe"></i> Pages</strong> (sección *Code and automation*).</li>
+                            <li>Bajo la sección <strong>"Build and deployment"</strong>, en el desplegable <strong>Branch</strong>, selecciona <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">main</code> (o <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">master</code>) y la carpeta <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">/ (root)</code>.</li>
+                            <li>Haz clic en <strong class="text-white">Save</strong>.</li>
+                            <li>En unos 1 a 2 minutos, tu web estará activa en un enlace del tipo: <br>
+                                <code class="bg-black border border-purple-500/40 text-purple-300 px-3 py-1.5 rounded inline-block mt-2 font-mono text-sm">https://tu-usuario.github.io/nivant-rally-2026/</code>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const mockRallyData = {
+            rally1: {
+                title: "1ª PRUEBA: 19 DE SEPTIEMBRE 2026",
+                results: [
+                    { pos: 1, name: "Carlos Sainz Jr.", car: "Peugeot 206 WRC", cat: "N1", e1: "08:42.120", e2: "08:35.410", pen: "00:00.000", total: "17:17.530", diff: "Leader" },
+                    { pos: 2, name: "Lucas López", car: "Subaru Impreza WRC", cat: "AV1", e1: "08:45.300", e2: "08:38.200", pen: "00:00.000", total: "17:23.500", diff: "+00:05.970" },
+                    { pos: 3, name: "Marcos García", car: "Ford Focus WRC", cat: "N2", e1: "08:50.100", e2: "08:44.800", pen: "00:00.000", total: "17:34.900", diff: "+00:17.370" },
+                    { pos: 4, name: "Adrián Gómez", car: "Citroën Xsara Kit Car", cat: "N3", e1: "08:58.400", e2: "08:52.100", pen: "00:00.000", total: "17:50.500", diff: "+00:32.970" },
+                    { pos: 5, name: "Diego Fernández", car: "Mitsubishi Lancer Evo", cat: "AV2", e1: "09:02.150", e2: "08:55.300", pen: "00:10.000", total: "18:07.450", diff: "+00:49.920" },
+                    { pos: 6, name: "Mateo Pérez (Infantil)", car: "Scaleauto Peugeot 208", cat: "INF", e1: "09:20.100", e2: "09:12.300", pen: "00:00.000", total: "18:32.400", diff: "+01:14.870" }
+                ]
+            },
+            rally2: {
+                title: "2ª PRUEBA: 3 DE OCTUBRE 2026",
+                results: [
+                    { pos: 1, name: "Lucas López", car: "Subaru Impreza WRC", cat: "AV1", e1: "08:30.100", e2: "08:25.400", pen: "00:00.000", total: "16:55.500", diff: "Leader" },
+                    { pos: 2, name: "Carlos Sainz Jr.", car: "Peugeot 206 WRC", cat: "N1", e1: "08:33.200", e2: "08:27.100", pen: "00:00.000", total: "17:00.300", diff: "+00:04.800" },
+                    { pos: 3, name: "Marcos García", car: "Ford Focus WRC", cat: "N2", e1: "08:42.000", e2: "08:39.100", pen: "00:00.000", total: "17:21.100", diff: "+00:25.600" }
+                ]
+            },
+            rally3: { title: "3ª PRUEBA: 14 DE NOVIEMBRE 2026", results: [] },
+            rally4: { title: "4ª PRUEBA: 12 DE DICIEMBRE 2026", results: [] }
+        };
+
+        const mockStandingsData = {
+            N1: [
+                { pos: 1, name: "Carlos Sainz Jr.", r1: 25, r2: 18, r3: 0, r4: 0, total: 43 },
+                { pos: 2, name: "Roberto Alonso", r1: 18, r2: 25, r3: 0, r4: 0, total: 43 }
+            ],
+            AV1: [
+                { pos: 1, name: "Lucas López", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 },
+                { pos: 2, name: "David Rodríguez", r1: 18, r2: 18, r3: 0, r4: 0, total: 36 }
+            ],
+            N2: [
+                { pos: 1, name: "Marcos García", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
+            ],
+            N3: [
+                { pos: 1, name: "Adrián Gómez", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
+            ],
+            AV2: [
+                { pos: 1, name: "Diego Fernández", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
+            ],
+            INF: [
+                { pos: 1, name: "Mateo Pérez (Infantil)", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
+            ]
+        };
+
+        let currentRallyKey = 'rally1';
+
+        function renderResults() {
+            const tableBody = document.getElementById('resultsTableBody');
+            const data = mockRallyData[currentRallyKey];
+            document.getElementById('currentEventTitle').textContent = data.title;
+
+            if (!data.results || data.results.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-500 italic">Prueba aún no celebrada o sin tiempos registrados.</td></tr>`;
+                return;
+            }
+
+            const search = document.getElementById('driverSearch').value.toLowerCase();
+            const cat = document.getElementById('categoryFilter').value;
+
+            const filtered = data.results.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(search) || item.car.toLowerCase().includes(search);
+                const matchesCat = cat === 'ALL' || item.cat === cat;
+                return matchesSearch && matchesCat;
+            });
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-500 italic">No se encontraron resultados para los filtros seleccionados.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = filtered.map(item => `
+                <tr class="hover:bg-rally-cardHover transition">
+                    <td class="p-3 text-center font-bold ${item.pos === 1 ? 'text-rally-gold' : 'text-gray-400'}">${item.pos}</td>
+                    <td class="p-3">
+                        <div class="font-bold text-white">${item.name}</div>
+                        <div class="text-[11px] text-gray-400 font-sans">${item.car}</div>
+                    </td>
+                    <td class="p-3 text-center">
+                        <span class="bg-black border border-rally-border px-2 py-0.5 rounded text-[10px] font-bold text-rally-gold">${item.cat}</span>
+                    </td>
+                    <td class="p-3 text-right text-gray-300">${item.e1}</td>
+                    <td class="p-3 text-right text-gray-300">${item.e2}</td>
+                    <td class="p-3 text-right ${item.pen !== '00:00.000' ? 'text-red-400' : 'text-gray-500'}">${item.pen}</td>
+                    <td class="p-3 text-right font-bold text-rally-gold">${item.total}</td>
+                    <td class="p-3 text-right text-gray-400 text-xs">${item.diff}</td>
+                </tr>
+            `).join('');
+        }
+
+        function filterResults() {
+            renderResults();
+        }
+
+        function renderStandings() {
+            const tableBody = document.getElementById('standingsTableBody');
+            const cat = document.getElementById('standingsCategoryFilter').value;
+            const data = mockStandingsData[cat] || [];
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-gray-500 italic">No hay clasificación registrada para esta categoría.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = data.map(item => `
+                <tr class="hover:bg-rally-cardHover transition">
+                    <td class="p-3 text-center font-bold ${item.pos === 1 ? 'text-rally-gold' : 'text-gray-400'}">${item.pos}</td>
+                    <td class="p-3 font-bold text-white">${item.name}</td>
+                    <td class="p-3 text-center text-gray-300">${item.r1} pts</td>
+                    <td class="p-3 text-center text-gray-300">${item.r2} pts</td>
+                    <td class="p-3 text-center text-gray-300">${item.r3} pts</td>
+                    <td class="p-3 text-center text-gray-300">${item.r4} pts</td>
+                    <td class="p-3 text-right font-bold text-rally-gold text-base">${item.total} pts</td>
+                </tr>
+            `).join('');
+        }
+
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Remove active style from all navigation buttons
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+
+            // Show selected tab content
+            const targetContent = document.getElementById('content-' + tabId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+
+            // Highlight selected tab button
+            const targetTab = document.getElementById('tab-' + tabId);
+            if (targetTab) {
+                targetTab.classList.add('active-tab');
+            }
+
+            if (tabId === 'results') renderResults();
+            if (tabId === 'standings') renderStandings();
+        }
+
+        function changeRallyEvent(rallyId) {
+            currentRallyKey = rallyId;
+            renderResults();
+        }
+
+        function updateLiveClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const clockEl = document.getElementById('liveClock');
+            if (clockEl) {
+                clockEl.textContent = `HORA: ${hours}:${minutes}:${seconds}`;
+            }
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderResults();
+            renderStandings();
+        });
+    </script>
+</body>
+</html>
