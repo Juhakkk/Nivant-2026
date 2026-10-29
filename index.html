@@ -194,47 +194,69 @@
         <!-- ========================================================= -->
         <!-- SECCIÓN 2: CLASIFICACIÓN GENERAL                           -->
         <!-- ========================================================= -->
-        <section id="content-standings" class="tab-content hidden space-y-6">
-            <div class="bg-rally-card border border-rally-border rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-rally-border pb-4">
-                    <div>
-                        <span class="bg-rally-gold text-black text-[10px] sm:text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">CAMPEONATO NRS 2026</span>
-                        <h2 class="text-2xl sm:text-3xl font-teko font-extrabold text-white leading-none mt-1">
-                            CLASIFICACIÓN GENERAL ACUMULADA — NIVANT RACING SERIES
-                        </h2>
-                        <p class="text-xs text-gray-400">Puntuación global por categoría acumulada en las 4 pruebas</p>
-                    </div>
-                    <select id="standingsCategoryFilter" onchange="renderStandings()" class="bg-black border border-rally-border text-white text-xs rounded-lg px-3 py-2 focus:border-rally-gold focus:outline-none font-bold">
-                        <option value="N1">N1 (Ninco Transversal)</option>
-                        <option value="N2">N2 (Ninco Lineal)</option>
-                        <option value="N3">N3 (Ninco S1600)</option>
-                        <option value="AV1">AV1 (Avant Transversal)</option>
-                        <option value="AV2">AV2 (Avant Lineal)</option>
-                        <option value="INF">Infantil</option>
-                    </select>
-                </div>
-
-                <!-- TABLA CLASIFICACIÓN GENERAL -->
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                        <thead>
-                            <tr class="bg-black/80 text-gray-400 font-teko text-base sm:text-lg tracking-wider border-b border-rally-border uppercase">
-                                <th class="p-3 text-center w-12">Pos</th>
-                                <th class="p-3">Piloto</th>
-                                <th class="p-3 text-center">1ª Prueba</th>
-                                <th class="p-3 text-center">2ª Prueba</th>
-                                <th class="p-3 text-center">3ª Prueba</th>
-                                <th class="p-3 text-center">4ª Prueba</th>
-                                <th class="p-3 text-right text-rally-gold">Puntos Totales</th>
-                            </tr>
-                        </thead>
-                        <tbody id="standingsTableBody" class="divide-y divide-rally-border/40 font-mono">
-                            <!-- Inyectado dinámicamente con JS -->
-                        </tbody>
-                    </table>
-                </div>
+        <!-- EVENTO ACTUAL: 1ª PRUEBA (19 DE SEPTIEMBRE 2026) -->
+<section>
+    <div>
+        <div>
+            <div>
+                <span>EVENTO ACTUAL</span>
+                <h2>1ª PRUEBA: 19 DE SEPTIEMBRE 2026</h2>
+                <p>Tiempos scratch y por categoría en tiempo real</p>
             </div>
-        </section>
+            <div>
+                <select>
+                    <option value="ALL">Todas las Categorías</option>
+                    <option value="N1">N1 (Ninco Transversal)</option>
+                    <option value="N2">N2 (Ninco Lineal)</option>
+                    <option value="N3">N3 (Ninco S1600)</option>
+                    <option value="AV1">AV1 (Avant Transversal)</option>
+                    <option value="AV2">AV2 (Avant Lineal)</option>
+                    <option value="INF">Infantil</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Piloto / Coche</th>
+                        <th>Cat.</th>
+                        <th>Tiempo Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Categoría N2 -->
+                    <tr><td>1</td><td>LUIS (Citroën)</td><td>N2</td><td>451.680 s</td></tr>
+                    <tr><td>2</td><td>VICKY BURGO (Peugeot)</td><td>N2</td><td>476.121 s</td></tr>
+                    <tr><td>3</td><td>JAVI SOTO (Ford Focus)</td><td>N2</td><td>495.580 s</td></tr>
+                    <tr><td>4</td><td>PABLO ANIDO (Peugeot)</td><td>N2</td><td>498.900 s</td></tr>
+                    <tr><td>5</td><td>ASIER FEIJOO (Mitsubishi)</td><td>N2</td><td>512.830 s</td></tr>
+                    <tr><td>6</td><td>ALEX FORMOSO (Citroën C4)</td><td>N2</td><td>517.270 s</td></tr>
+                    <tr><td>7</td><td>BRAIS SOTO (Citroën C4)</td><td>N2</td><td>542.210 s</td></tr>
+                    <tr><td>8</td><td>LUPE (Subaru)</td><td>N2</td><td>603.920 s</td></tr>
+                    <tr><td>9</td><td>MARCOS DUCHEL (Ford Focus)</td><td>N2</td><td>654.190 s</td></tr>
+                    <tr><td>10</td><td>JORGE (Golf)</td><td>N2</td><td>730.560 s</td></tr>
+
+                    <!-- Categoría N1 -->
+                    <tr><td>1</td><td>FERNANDO GALLO (Porsche)</td><td>N1</td><td>473.701 s</td></tr>
+                    <tr><td>2</td><td>SERGIO SOTO (Porsche)</td><td>N1</td><td>474.325 s</td></tr>
+                    <tr><td>3</td><td>DANIEL MORCUENDE (Porsche)</td><td>N1</td><td>475.452 s</td></tr>
+                    <tr><td>4</td><td>CARLOS REBOREDO (Ferrari)</td><td>N1</td><td>557.260 s</td></tr>
+
+                    <!-- Categoría N3 -->
+                    <tr><td>1</td><td>ÁNGEL COBAS (Clio)</td><td>N3</td><td>516.200 s</td></tr>
+                    <tr><td>2</td><td>SUSO BURGO (Clio)</td><td>N3</td><td>537.515 s</td></tr>
+
+                    <!-- Categoría Infantil -->
+                    <tr><td>1</td><td>ARTAI FEIJOO (Škoda Fabia)</td><td>INF</td><td>1021.099 s</td></tr>
+                    <tr><td>2</td><td>IAGO FORMOSO (Peugeot)</td><td>INF</td><td>1182.194 s</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
         <!-- ========================================================= -->
         <!-- SECCIÓN 3: REGLAMENTO DEPORTIVO                           -->
