@@ -1,411 +1,143 @@
-<!-- ===================================================================== -->
-<!-- SECCIÓN: CLASIFICACIÓN GENERAL POR CATEGORÍAS (ESTILO REGLAMENTO NRS) -->
-<!-- ===================================================================== -->
-<style>
-  .nrs-standings-section {
-    max-width: 1200px;
-    margin: 2.5rem auto;
-    padding: 0 1rem;
-    font-family: inherit;
-    color: #f1f5f9;
-  }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonato NRS 2026 - Nivant Racing Series</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  .nrs-standings-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 1px solid #334155;
-    border-left: 4px solid #ef4444;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-  }
+    <header>
+        <div>
+            <div>
+                <div>
+                    <div>NRS</div>
+                    <div>NIVANT RACING</div>
+                </div>
+                <div>
+                    <h1>CAMPEONATO <span>NRS 2026</span></h1>
+                    <p>🔰 NIVANT RACING SERIES • Tiempos y clasificaciones 🔰</p>
+                </div>
+            </div>
 
-  .nrs-badge-oficial {
-    display: inline-block;
-    background: rgba(239, 68, 68, 0.15);
-    color: #f87171;
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.65rem;
-    border-radius: 999px;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-  }
+            <div>
+                <div>
+                    <select>
+                        <option selected value="rally1">🏁 1ª Prueba: 19 Sept. (Asfalto)</option>
+                        <option value="rally2">🏁 2ª Prueba: 3 Oct. (Asfalto)</option>
+                        <option value="rally3">🏁 3ª Prueba: 14 Nov. (Asfalto)</option>
+                        <option value="rally4">🏁 4ª Prueba: 12 Dic. (Nieve)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-  .nrs-standings-header h2 {
-    margin: 0;
-    font-size: 1.45rem;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    color: #ffffff;
-  }
+        <nav>
+            <div></div>
+        </nav>
+    </header>
 
-  .nrs-standings-header p {
-    margin: 0.35rem 0 0;
-    font-size: 0.9rem;
-    color: #94a3b8;
-  }
+    <main>
+        <section>
+            <div>
+                <div>
+                    <div>
+                        <span>EVENTO ACTUAL</span>
+                        <h2>1ª PRUEBA: 19 DE SEPTIEMBRE 2026</h2>
+                        <p>Tiempos scratch y por categoría en tiempo real</p>
+                    </div>
 
-  .nrs-puntos-pill {
-    background: #0f172a;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
-    text-align: right;
-  }
+                    <div>
+                        <div><i></i></div>
+                        <select>
+                            <option value="ALL">Todas las Categorías</option>
+                            <option value="N1">N1 (Ninco Transversal)</option>
+                            <option value="N2">N2 (Ninco Lineal)</option>
+                            <option value="N3">N3 (Ninco S1600)</option>
+                            <option value="AV1">AV1 (Avant Transversal)</option>
+                            <option value="AV2">AV2 (Avant Lineal)</option>
+                            <option value="INF">Infantil</option>
+                        </select>
+                    </div>
+                </div>
 
-  .nrs-puntos-pill span {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #94a3b8;
-  }
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Piloto / Coche</th>
+                                <th>Cat.</th>
+                                <th>Etapa 1</th>
+                                <th>Etapa 2</th>
+                                <th>Penal.</th>
+                                <th>Tiempo Total</th>
+                                <th>Diferencia</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
-  .nrs-puntos-pill strong {
-    font-size: 0.85rem;
-    color: #facc15;
-  }
+        <section>
+            <div>
+                <div>
+                    <div>
+                        <span>EVENTO ACTUAL</span>
+                        <h2>1ª PRUEBA: 19 DE SEPTIEMBRE 2026</h2>
+                        <p>Tiempos scratch y por categoría en tiempo real</p>
+                    </div>
+                    <div>
+                        <select>
+                            <option value="ALL">Todas las Categorías</option>
+                            <option value="N1">N1 (Ninco Transversal)</option>
+                            <option value="N2">N2 (Ninco Lineal)</option>
+                            <option value="N3">N3 (Ninco S1600)</option>
+                            <option value="AV1">AV1 (Avant Transversal)</option>
+                            <option value="AV2">AV2 (Avant Lineal)</option>
+                            <option value="INF">Infantil</option>
+                        </select>
+                    </div>
+                </div>
 
-  .nrs-cat-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Piloto / Coche</th>
+                                <th>Cat.</th>
+                                <th>Tiempo Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>LUIS (Citroën)</td><td>N2</td><td>451.680 s</td></tr>
+                            <tr><td>2</td><td>VICKY BURGO (Peugeot)</td><td>N2</td><td>476.121 s</td></tr>
+                            <tr><td>3</td><td>JAVI SOTO (Ford Focus)</td><td>N2</td><td>495.580 s</td></tr>
+                            <tr><td>4</td><td>PABLO ANIDO (Peugeot)</td><td>N2</td><td>498.900 s</td></tr>
+                            <tr><td>5</td><td>ASIER FEIJOO (Mitsubishi)</td><td>N2</td><td>512.830 s</td></tr>
+                            <tr><td>6</td><td>ALEX FORMOSO (Citroën C4)</td><td>N2</td><td>517.270 s</td></tr>
+                            <tr><td>7</td><td>BRAIS SOTO (Citroën C4)</td><td>N2</td><td>542.210 s</td></tr>
+                            <tr><td>8</td><td>LUPE (Subaru)</td><td>N2</td><td>603.920 s</td></tr>
+                            <tr><td>9</td><td>MARCOS DUCHEL (Ford Focus)</td><td>N2</td><td>654.190 s</td></tr>
+                            <tr><td>10</td><td>JORGE (Golf)</td><td>N2</td><td>730.560 s</td></tr>
+                            <tr><td>1</td><td>FERNANDO GALLO (Porsche)</td><td>N1</td><td>473.701 s</td></tr>
+                            <tr><td>2</td><td>SERGIO SOTO (Porsche)</td><td>N1</td><td>474.325 s</td></tr>
+                            <tr><td>3</td><td>DANIEL MORCUENDE (Porsche)</td><td>N1</td><td>475.452 s</td></tr>
+                            <tr><td>4</td><td>CARLOS REBOREDO (Ferrari)</td><td>N1</td><td>557.260 s</td></tr>
+                            <tr><td>1</td><td>ÁNGEL COBAS (Clio)</td><td>N3</td><td>516.200 s</td></tr>
+                            <tr><td>2</td><td>SUSO BURGO (Clio)</td><td>N3</td><td>537.515 s</td></tr>
+                            <tr><td>1</td><td>ARTAI FEIJOO (Škoda Fabia)</td><td>INF</td><td>1021.099 s</td></tr>
+                            <tr><td>2</td><td>IAGO FORMOSO (Peugeot)</td><td>INF</td><td>1182.194 s</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  .nrs-reg-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  }
-
-  .nrs-reg-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    background: #1e293b;
-    border-bottom: 1px solid #334155;
-  }
-
-  .nrs-reg-card-title {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0;
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-transform: uppercase;
-  }
-
-  .nrs-num-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.2rem;
-    height: 1.85rem;
-    padding: 0 0.5rem;
-    background: #ef4444;
-    color: #ffffff;
-    font-weight: 900;
-    font-size: 0.8rem;
-    border-radius: 6px;
-  }
-
-  .nrs-table-wrap {
-    overflow-x: auto;
-  }
-
-  .nrs-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.88rem;
-    text-align: left;
-  }
-
-  .nrs-table thead th {
-    background: #0b1120;
-    color: #94a3b8;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #1e293b;
-    white-space: nowrap;
-  }
-
-  .nrs-table tbody tr {
-    border-bottom: 1px solid #1e293b;
-    transition: background 0.15s ease;
-  }
-
-  .nrs-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .nrs-table td {
-    padding: 0.72rem 1rem;
-    color: #e2e8f0;
-    white-space: nowrap;
-  }
-
-  .nrs-pos {
-    font-weight: 800;
-    width: 45px;
-    text-align: center;
-  }
-
-  .nrs-pos-1 { color: #facc15; }
-  .nrs-pos-2 { color: #cbd5e1; }
-  .nrs-pos-3 { color: #d97706; }
-
-  .nrs-club-tag {
-    font-size: 0.75rem;
-    color: #94a3b8;
-    background: #1e293b;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-  }
-
-  .nrs-pts-cell {
-    color: #94a3b8;
-    font-size: 0.82rem;
-    text-align: center;
-  }
-
-  .nrs-pts-cell strong {
-    color: #f8fafc;
-  }
-
-  .nrs-total-pts {
-    font-weight: 900;
-    font-size: 0.98rem;
-    color: #38bdf8;
-    text-align: right;
-  }
-</style>
-
-<section class="nrs-standings-section" id="clasificacion-general">
-  <div class="nrs-standings-header">
-    <div>
-      <span class="nrs-badge-oficial">CLASIFICACIÓN GENERAL • 3 DE 4 PRUEBAS</span>
-      <h2>PUNTUACIÓN INDIVIDUAL POR CATEGORÍA — NRS 2026</h2>
-      <p>Organizado por: <strong>CLUB SLOT LUCUS (CSL)</strong> • Actualizado tras la 3ª Prueba (14 Noviembre)</p>
-    </div>
-    <div class="nrs-puntos-pill">
-      <span>Sistema de Puntuación por Grupo (1º a 12º)</span>
-      <strong>25 - 18 - 15 - 12 - 10 - 8 - 6 - 5 - 4 - 3 - 2 - 1</strong>
-    </div>
-  </div>
-
-  <div class="nrs-cat-grid" id="nrs-standings-container"></div>
-</section>
-
-<script>
-(function() {
-  // Baremo oficial por posición en categoría (1º a 12º)
-  const PUNTOS_SISTEMA = [25, 18, 15, 12, 10, 8, 6, 5, 4, 3, 2, 1];
-
-  // Resultados oficiales extraídos del Excel (1ª, 2ª y 3ª Prueba)
-  const PRUEBAS_NRS = [
-    {
-      id: "r1",
-      nombre: "1ª Prueba (19 Sept.)",
-      resultados: [
-        // N2
-        { piloto: "LUIS", club: "SLOT LUCUS", coche: "Citroën C4", cat: "N2", total: 451.680 },
-        { piloto: "VICKY BURGO", club: "SLOT LUCUS", coche: "Peugeot", cat: "N2", total: 476.121 },
-        { piloto: "JAVI SOTO", club: "JSB RACING", coche: "Ford Focus", cat: "N2", total: 495.580 },
-        { piloto: "PABLO ANIDO", club: "SLOT LUCUS", coche: "Peugeot", cat: "N2", total: 498.900 },
-        { piloto: "ASIER FEIJOO", club: "SLOT LUCUS", coche: "Mitsubishi", cat: "N2", total: 512.830 },
-        { piloto: "ALEX FORMOSO", club: "-", coche: "Citroën C4", cat: "N2", total: 517.270 },
-        { piloto: "BRAIS SOTO", club: "JSB RACING", coche: "Citroën C4", cat: "N2", total: 542.210 },
-        { piloto: "LUPE", club: "SLOT LUCUS", coche: "Subaru", cat: "N2", total: 603.920 },
-        { piloto: "MARCOS DUCHEL", club: "LUME CARALLO", coche: "Ford Focus", cat: "N2", total: 654.190 },
-        { piloto: "JORGE", club: "VALVERDERING", coche: "Golf", cat: "N2", total: 730.560 },
-        // N1
-        { piloto: "FERNANDO GALLO", club: "VILAXUSO TEAM", coche: "Porsche", cat: "N1", total: 473.701 },
-        { piloto: "SERGIO SOTO", club: "JSB RACING", coche: "Porsche", cat: "N1", total: 474.325 },
-        { piloto: "DANIEL MORCUENDE", club: "LUME CARALLO", coche: "Porsche", cat: "N1", total: 475.452 },
-        { piloto: "CARLOS REBOREDO", club: "ANCARES", coche: "Ferrari", cat: "N1", total: 557.260 },
-        // N3
-        { piloto: "ÁNGEL COBAS", club: "SLOT LUCUS", coche: "Clio", cat: "N3", total: 516.200 },
-        { piloto: "SUSO BURGO", club: "SLOT LUCUS", coche: "Clio", cat: "N3", total: 537.515 },
-        // INF
-        { piloto: "ARTAI FEIJOO", club: "SLOT LUCUS", coche: "Škoda Fabia", cat: "INF", total: 1021.099 },
-        { piloto: "IAGO FORMOSO", club: "-", coche: "Peugeot", cat: "INF", total: 1182.194 }
-      ]
-    },
-    {
-      id: "r2",
-      nombre: "2ª Prueba (3 Oct.)",
-      resultados: [
-        // N2
-        { piloto: "JUAN MARZOA", club: "SLOT LUCUS", coche: "Citroën C4 WRC", cat: "N2", total: 437.110 },
-        { piloto: "LUIS", club: "SLOT LUCUS", coche: "Citroën C4 WRC", cat: "N2", total: 444.480 },
-        { piloto: "VICKY BURGO", club: "SLOT LUCUS", coche: "Peugeot 307 WRC", cat: "N2", total: 452.170 },
-        { piloto: "PABLO ANIDO", club: "SLOT LUCUS", coche: "Citroën C4 WRC", cat: "N2", total: 459.630 },
-        { piloto: "ASIER FEIJOO", club: "SLOT LUCUS", coche: "Mitsubishi WRC", cat: "N2", total: 471.100 },
-        { piloto: "ALEX FORMOSO", club: "-", coche: "Citroën C4 WRC", cat: "N2", total: 482.390 },
-        { piloto: "JAVI SOTO", club: "JSB RACING", coche: "Ford Focus WRC", cat: "N2", total: 485.400 },
-        { piloto: "BRAIS SOTO", club: "JSB RACING", coche: "Citroën C4 WRC", cat: "N2", total: 500.540 },
-        { piloto: "LEO LONGUEIRA", club: "TEMPLE RACING", coche: "Peugeot 307 WRC", cat: "N2", total: 525.450 },
-        { piloto: "LUPE", club: "SLOT LUCUS", coche: "Subaru Impreza WRC", cat: "N2", total: 545.610 },
-        { piloto: "JOSE CEBREIRO", club: "ARTABRIA SLOT", coche: "Citroën C4 WRC", cat: "N2", total: 573.210 },
-        { piloto: "MARCOS DUCHEL", club: "LUME CARALLO", coche: "Ford Focus WRC", cat: "N2", total: 600.450 },
-        { piloto: "JORGE", club: "VALVERDERING", coche: "VW Golf", cat: "N2", total: 1998.000, dnf: true },
-        // N1
-        { piloto: "FERNANDO GALLO", club: "VILAXUSO TEAM", coche: "Porsche 911 GT3", cat: "N1", total: 460.320 },
-        { piloto: "CARLOS REBOREDO", club: "ANCARES", coche: "Ferrari 360 Módena", cat: "N1", total: 465.120 },
-        { piloto: "SERGIO SOTO", club: "JSB RACING", coche: "Porsche 911 GT3", cat: "N1", total: 465.890 },
-        { piloto: "DANIEL MORCUENDE", club: "LUME CARALLO", coche: "Porsche 911 GT3", cat: "N1", total: 489.370 },
-        // N3
-        { piloto: "LUIS BURGO", club: "SLOT LUCUS", coche: "Renault Clio", cat: "N3", total: 496.230 },
-        { piloto: "ÁNGEL COBAS", club: "SLOT LUCUS", coche: "Citroën Saxo", cat: "N3", total: 505.960 },
-        // INF
-        { piloto: "ARTAI FEIJOO", club: "SLOT LUCUS", coche: "Škoda Fabia", cat: "INF", total: 1083.230 },
-        { piloto: "IAGO FORMOSO", club: "-", coche: "Peugeot 208", cat: "INF", total: 1121.400 },
-        { piloto: "CLARA ANIDO", club: "FANDYS GARAGE", coche: "Mitsubishi Lancer", cat: "INF", total: 1268.010 }
-      ]
-    },
-    {
-      id: "r3",
-      nombre: "3ª Prueba (14 Nov.)",
-      resultados: [
-        // N2
-        { piloto: "JUAN MARZOA", club: "SLOT LUCUS", coche: "Citroën C4 WRC", cat: "N2", total: 423.140 },
-        { piloto: "VICKY BURGO", club: "SLOT LUCUS", coche: "Peugeot 307 WRC", cat: "N2", total: 424.040 },
-        { piloto: "JAVI SOTO", club: "JSB RACING", coche: "Ford Focus WRC", cat: "N2", total: 454.178 },
-        { piloto: "PABLO ANIDO", club: "SLOT LUCUS", coche: "Citroën C4 WRC", cat: "N2", total: 456.407 },
-        { piloto: "ALEX FORMOSO", club: "-", coche: "Citroën C4 WRC", cat: "N2", total: 462.532 },
-        { piloto: "LEO LONGUEIRA", club: "TEMPLE RACING", coche: "Peugeot 307 WRC", cat: "N2", total: 484.779 },
-        { piloto: "ASIER FEIJOO", club: "SLOT LUCUS", coche: "Mitsubishi Lancer", cat: "N2", total: 490.463 },
-        { piloto: "BRAIS SOTO", club: "JSB RACING", coche: "Citroën C4 WRC", cat: "N2", total: 512.304 },
-        { piloto: "NOEL", club: "LUME CARALLO", coche: "Ford Focus WRC", cat: "N2", total: 562.900 },
-        { piloto: "JORGE", club: "VALVERDERING", coche: "VW Golf", cat: "N2", total: 598.800 },
-        // N1
-        { piloto: "FERNANDO GALLO", club: "VILAXUSO TEAM", coche: "Porsche 911 GT3", cat: "N1", total: 436.430 },
-        { piloto: "SERGIO SOTO", club: "JSB RACING", coche: "Porsche 911 GT3", cat: "N1", total: 444.022 },
-        { piloto: "DANIEL MORCUENDE", club: "LUME CARALLO", coche: "Porsche 911 GT3", cat: "N1", total: 454.064 },
-        { piloto: "CARLOS REBOREDO", club: "ANCARES", coche: "Ferrari 360", cat: "N1", total: 456.630 },
-        // INF
-        { piloto: "IAGO FORMOSO", club: "-", coche: "Peugeot 208", cat: "INF", total: 1215.790 },
-        { piloto: "ARTAI FEIJOO", club: "SLOT LUCUS", coche: "Škoda Fabia R5", cat: "INF", total: 1220.030 },
-        { piloto: "CARLA ROZAS", club: "FANDYS GARAGE", coche: "Mitsubishi Lancer", cat: "INF", total: 1292.390 },
-        { piloto: "MATEO ROZAS", club: "FANDYS GARAGE", coche: "Mitsubishi Lancer", cat: "INF", total: 1445.436 },
-        { piloto: "CLARA ANIDO", club: "FANDYS GARAGE", coche: "Mitsubishi Lancer", cat: "INF", total: 1690.850 }
-      ]
-    }
-  ];
-
-  const CATEGORIAS_INFO = [
-    { code: "N2", titulo: "COPA NINCO — N2 (LINEAL)" },
-    { code: "N1", titulo: "COPA NINCO — N1 (TRANSVERSAL)" },
-    { code: "N3", titulo: "COPA NINCO — N3 (S1600)" },
-    { code: "INF", titulo: "CATEGORÍA INFANTIL (SCALEAUTO)" }
-  ];
-
-  const container = document.getElementById("nrs-standings-container");
-
-  CATEGORIAS_INFO.forEach(catInfo => {
-    const pilotosMap = {};
-
-    PRUEBAS_NRS.forEach((prueba, rIdx) => {
-      const enCat = prueba.resultados
-        .filter(r => r.cat === catInfo.code)
-        .sort((a, b) => a.total - b.total);
-
-      enCat.forEach((entry, idx) => {
-        if (!pilotosMap[entry.piloto]) {
-          pilotosMap[entry.piloto] = {
-            piloto: entry.piloto,
-            club: entry.club,
-            coche: entry.coche,
-            pruebas: [null, null, null],
-            totalPts: 0,
-            mejorPuesto: 999
-          };
-        }
-        if (entry.club && entry.club !== "-") pilotosMap[entry.piloto].club = entry.club;
-        pilotosMap[entry.piloto].coche = entry.coche;
-
-        const pts = entry.dnf ? 0 : (PUNTOS_SISTEMA[idx] || 0);
-        if (!entry.dnf && (idx + 1) < pilotosMap[entry.piloto].mejorPuesto) {
-          pilotosMap[entry.piloto].mejorPuesto = idx + 1;
-        }
-
-        pilotosMap[entry.piloto].pruebas[rIdx] = {
-          pos: entry.dnf ? "Ab." : `${idx + 1}º`,
-          pts: pts,
-          tiempo: entry.total
-        };
-        pilotosMap[entry.piloto].totalPts += pts;
-      });
-    });
-
-    // Ordenar por puntos totales y desempatar por mejor puesto obtenido
-    const ranking = Object.values(pilotosMap).sort((a, b) => {
-      if (b.totalPts !== a.totalPts) return b.totalPts - a.totalPts;
-      return a.mejorPuesto - b.mejorPuesto;
-    });
-
-    const card = document.createElement("div");
-    card.className = "nrs-reg-card";
-    card.innerHTML = `
-      <div class="nrs-reg-card-header">
-        <h3 class="nrs-reg-card-title">
-          <span class="nrs-num-badge">${catInfo.code}</span>
-          ${catInfo.titulo}
-        </h3>
-        <span style="font-size:0.78rem; color:#94a3b8;">${ranking.length} pilotos clasificados</span>
-      </div>
-      <div class="nrs-table-wrap">
-        <table class="nrs-table">
-          <thead>
-            <tr>
-              <th style="text-align:center;">Pos</th>
-              <th>Piloto</th>
-              <th>Club</th>
-              <th>Último Coche</th>
-              <th style="text-align:center;">1ª Prueba</th>
-              <th style="text-align:center;">2ª Prueba</th>
-              <th style="text-align:center;">3ª Prueba</th>
-              <th style="text-align:right;">Total Puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${ranking.map((p, i) => {
-              const posClass = i === 0 ? "nrs-pos-1" : i === 1 ? "nrs-pos-2" : i === 2 ? "nrs-pos-3" : "";
-              const formatR = (r) => r ? `<strong>${r.pts} pts</strong> <span style="opacity:0.7">(${r.pos})</span>` : "—";
-              return `
-                <tr>
-                  <td class="nrs-pos ${posClass}">${i + 1}º</td>
-                  <td><strong>${p.piloto}</strong></td>
-                  <td><span class="nrs-club-tag">${p.club}</span></td>
-                  <td style="color:#cbd5e1;">${p.coche}</td>
-                  <td class="nrs-pts-cell">${formatR(p.pruebas[0])}</td>
-                  <td class="nrs-pts-cell">${formatR(p.pruebas[1])}</td>
-                  <td class="nrs-pts-cell">${formatR(p.pruebas[2])}</td>
-                  <td class="nrs-total-pts">${p.totalPts} pts</td>
-                </tr>
-              `;
-            }).join("")}
-          </tbody>
-        </table>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-})();
-</script>
+</body>
+</html>
