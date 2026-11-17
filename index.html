@@ -98,9 +98,9 @@
                 <div class="relative w-full sm:w-80">
                     <label for="eventSelector" class="sr-only">Seleccionar Evento</label>
                     <select id="eventSelector" onchange="changeRallyEvent(this.value)" class="w-full bg-black border border-rally-border text-white text-xs rounded-lg px-3 py-2.5 focus:border-rally-gold focus:outline-none focus:ring-1 focus:ring-rally-gold transition font-bold">
-                        <option value="rally1" selected>🏁 1ª Prueba: 19 Sept. (Asfalto)</option>
+                        <option value="rally1">🏁 1ª Prueba: 19 Sept. (Asfalto)</option>
                         <option value="rally2">🏁 2ª Prueba: 3 Oct. (Asfalto)</option>
-                        <option value="rally3">🏁 3ª Prueba: 14 Nov. (Asfalto)</option>
+                        <option value="rally3" selected>🏁 3ª Prueba: 14 Nov. (Asfalto)</option>
                         <option value="rally4">🏁 4ª Prueba: 12 Dic. (Nieve)</option>
                     </select>
                 </div>
@@ -125,9 +125,6 @@
                 <button onclick="switchTab('avant')" id="tab-avant" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-rally-gold flex items-center gap-2 transition">
                     <i class="fa-solid fa-gauge-high text-rally-gold text-base"></i> Téc. Avant Slot
                 </button>
-                <button onclick="switchTab('github')" id="tab-github" class="nav-tab px-5 py-3.5 text-gray-300 hover:text-purple-400 flex items-center gap-2 transition">
-                    <i class="fa-brands fa-github text-purple-400 text-base"></i> Guía GitHub Pages
-                </button>
             </div>
         </nav>
     </header>
@@ -147,7 +144,7 @@
                         <h2 id="currentEventTitle" class="text-2xl sm:text-3xl font-teko font-extrabold text-white leading-none mt-1">
                             1ª PRUEBA: 19 DE SEPTIEMBRE 2026
                         </h2>
-                        <p class="text-xs text-gray-400">Tiempos scratch y por categoría en tiempo real</p>
+                        <p class="text-xs text-gray-400">Clasificación scratch de la prueba según los tiempos oficiales del Excel</p>
                     </div>
 
                     <!-- BÚSQUEDA Y FILTRO DE CATEGORÍA -->
@@ -173,14 +170,12 @@
                     <table class="w-full text-left border-collapse text-xs sm:text-sm">
                         <thead>
                             <tr class="bg-black/80 text-gray-400 font-teko text-base sm:text-lg tracking-wider border-b border-rally-border uppercase">
-                                <th class="p-3 text-center w-12">Pos</th>
-                                <th class="p-3">Piloto / Coche</th>
-                                <th class="p-3 text-center">Cat.</th>
-                                <th class="p-3 text-right">Etapa 1</th>
-                                <th class="p-3 text-right">Etapa 2</th>
-                                <th class="p-3 text-right">Penal.</th>
-                                <th class="p-3 text-right text-rally-gold">Tiempo Total</th>
-                                <th class="p-3 text-right">Diferencia</th>
+                                <th class="p-3 text-center w-12">Pos.</th>
+                                <th class="p-3">Piloto</th>
+                                <th class="p-3">Club</th>
+                                <th class="p-3">Coche</th>
+                                <th class="p-3 text-center">Grupo</th>
+                                <th class="p-3 text-right text-rally-gold">Tiempo total</th>
                             </tr>
                         </thead>
                         <tbody id="resultsTableBody" class="divide-y divide-rally-border/40 font-mono">
@@ -202,7 +197,7 @@
                         <h2 class="text-2xl sm:text-3xl font-teko font-extrabold text-white leading-none mt-1">
                             CLASIFICACIÓN GENERAL ACUMULADA — NIVANT RACING SERIES
                         </h2>
-                        <p class="text-xs text-gray-400">Puntuación global por categoría acumulada en las 4 pruebas</p>
+                        <p class="text-xs text-gray-400">Puntos acumulados por grupo · 3 pruebas celebradas de 4 · Desempate: mejor puesto en la última prueba</p>
                     </div>
                     <select id="standingsCategoryFilter" onchange="renderStandings()" class="bg-black border border-rally-border text-white text-xs rounded-lg px-3 py-2 focus:border-rally-gold focus:outline-none font-bold">
                         <option value="N1">N1 (Ninco Transversal)</option>
@@ -221,6 +216,7 @@
                             <tr class="bg-black/80 text-gray-400 font-teko text-base sm:text-lg tracking-wider border-b border-rally-border uppercase">
                                 <th class="p-3 text-center w-12">Pos</th>
                                 <th class="p-3">Piloto</th>
+                                <th class="p-3">Club</th>
                                 <th class="p-3 text-center">1ª Prueba</th>
                                 <th class="p-3 text-center">2ª Prueba</th>
                                 <th class="p-3 text-center">3ª Prueba</th>
@@ -773,125 +769,1384 @@
             </div>
         </section>
 
-        <!-- ========================================================= -->
-        <!-- SECCIÓN 6: GUÍA PASO A PASO PARA GITHUB PAGES              -->
-        <!-- ========================================================= -->
-        <section id="content-github" class="tab-content hidden space-y-6">
-            <div class="bg-rally-card border border-rally-border rounded-2xl p-6 shadow-2xl space-y-6">
-                <div class="border-b border-rally-border pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                        <span class="bg-purple-600 text-white text-xs font-black px-2.5 py-1 rounded uppercase tracking-wider">HOSTING GRATUITO</span>
-                        <h2 class="text-3xl sm:text-4xl font-teko font-extrabold text-white leading-none mt-2">
-                            CÓMO PUBLICAR TU WEB EN GITHUB PAGES
-                        </h2>
-                        <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
-                            <i class="fa-brands fa-github text-purple-400"></i>
-                            Guía rápida para alojar la web oficial de la competición gratis y online en 5 minutos
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- PASO 1 Y 2 -->
-                    <div class="bg-black/60 border border-rally-border rounded-xl p-5 space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white font-black flex items-center justify-center font-teko text-xl">1</span>
-                            <h3 class="text-lg font-teko font-bold text-white">Crear un cuenta y repositorio en GitHub</h3>
-                        </div>
-                        <ol class="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
-                            <li>Entra en <a href="https://github.com" target="_blank" class="text-purple-400 underline">github.com</a> y crea una cuenta gratuita si aún no tienes una.</li>
-                            <li>Haz clic en el botón <strong class="text-white">"+"</strong> (arriba a la derecha) y selecciona <strong class="text-white">"New repository"</strong>.</li>
-                            <li>Nombra el repositorio (ejemplo: <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">nivant-rally-2026</code>).</li>
-                            <li>Asegúrate de dejarlo marcado como <strong class="text-white">Public</strong>.</li>
-                            <li>Haz clic en <strong class="text-white">"Create repository"</strong>.</li>
-                        </ol>
-                    </div>
-
-                    <!-- PASO 3 Y 4 -->
-                    <div class="bg-black/60 border border-rally-border rounded-xl p-5 space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white font-black flex items-center justify-center font-teko text-xl">2</span>
-                            <h3 class="text-lg font-teko font-bold text-white">Subir el archivo HTML</h3>
-                        </div>
-                        <ol class="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
-                            <li>Dentro de tu nuevo repositorio, haz clic en <strong class="text-white">"uploading an existing file"</strong>.</li>
-                            <li>Guarda todo el código de esta página como un archivo llamado estrictamente <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-yellow-400 font-bold">index.html</code> en tu ordenador.</li>
-                            <li>Arrastra <code class="text-yellow-400">index.html</code> a la pantalla de GitHub.</li>
-                            <li>Haz clic en el botón verde <strong class="text-white">"Commit changes"</strong> abajo de la página.</li>
-                        </ol>
-                    </div>
-
-                    <!-- PASO 5 -->
-                    <div class="bg-black/60 border border-rally-border rounded-xl p-5 space-y-3 md:col-span-2">
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white font-black flex items-center justify-center font-teko text-xl">3</span>
-                            <h3 class="text-lg font-teko font-bold text-white">Activar GitHub Pages</h3>
-                        </div>
-                        <ol class="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
-                            <li>Dentro de tu repositorio en GitHub, ve a la pestaña superior <strong class="text-white"><i class="fa-solid fa-gear"></i> Settings</strong>.</li>
-                            <li>En el menú lateral izquierdo, haz clic en <strong class="text-white"><i class="fa-solid fa-globe"></i> Pages</strong> (sección *Code and automation*).</li>
-                            <li>Bajo la sección <strong>"Build and deployment"</strong>, en el desplegable <strong>Branch</strong>, selecciona <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">main</code> (o <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">master</code>) y la carpeta <code class="bg-black border border-rally-border px-1.5 py-0.5 rounded text-purple-300">/ (root)</code>.</li>
-                            <li>Haz clic en <strong class="text-white">Save</strong>.</li>
-                            <li>En unos 1 a 2 minutos, tu web estará activa en un enlace del tipo: <br>
-                                <code class="bg-black border border-purple-500/40 text-purple-300 px-3 py-1.5 rounded inline-block mt-2 font-mono text-sm">https://tu-usuario.github.io/nivant-rally-2026/</code>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
 
     </main>
 
     <script>
         const mockRallyData = {
-            rally1: {
-                title: "1ª PRUEBA: 19 DE SEPTIEMBRE 2026",
-                results: [
-                    { pos: 1, name: "Carlos Sainz Jr.", car: "Peugeot 206 WRC", cat: "N1", e1: "08:42.120", e2: "08:35.410", pen: "00:00.000", total: "17:17.530", diff: "Leader" },
-                    { pos: 2, name: "Lucas López", car: "Subaru Impreza WRC", cat: "AV1", e1: "08:45.300", e2: "08:38.200", pen: "00:00.000", total: "17:23.500", diff: "+00:05.970" },
-                    { pos: 3, name: "Marcos García", car: "Ford Focus WRC", cat: "N2", e1: "08:50.100", e2: "08:44.800", pen: "00:00.000", total: "17:34.900", diff: "+00:17.370" },
-                    { pos: 4, name: "Adrián Gómez", car: "Citroën Xsara Kit Car", cat: "N3", e1: "08:58.400", e2: "08:52.100", pen: "00:00.000", total: "17:50.500", diff: "+00:32.970" },
-                    { pos: 5, name: "Diego Fernández", car: "Mitsubishi Lancer Evo", cat: "AV2", e1: "09:02.150", e2: "08:55.300", pen: "00:10.000", total: "18:07.450", diff: "+00:49.920" },
-                    { pos: 6, name: "Mateo Pérez (Infantil)", car: "Scaleauto Peugeot 208", cat: "INF", e1: "09:20.100", e2: "09:12.300", pen: "00:00.000", total: "18:32.400", diff: "+01:14.870" }
-                ]
+    "rally1": {
+        "title": "1ª PRUEBA: 19 DE SEPTIEMBRE 2026",
+        "results": [
+            {
+                "pos": 1,
+                "name": "LUIS",
+                "club": "SLOT LUCUS",
+                "car": "CITROEN C4",
+                "cat": "N2",
+                "total": 451.68
             },
-            rally2: {
-                title: "2ª PRUEBA: 3 DE OCTUBRE 2026",
-                results: [
-                    { pos: 1, name: "Lucas López", car: "Subaru Impreza WRC", cat: "AV1", e1: "08:30.100", e2: "08:25.400", pen: "00:00.000", total: "16:55.500", diff: "Leader" },
-                    { pos: 2, name: "Carlos Sainz Jr.", car: "Peugeot 206 WRC", cat: "N1", e1: "08:33.200", e2: "08:27.100", pen: "00:00.000", total: "17:00.300", diff: "+00:04.800" },
-                    { pos: 3, name: "Marcos García", car: "Ford Focus WRC", cat: "N2", e1: "08:42.000", e2: "08:39.100", pen: "00:00.000", total: "17:21.100", diff: "+00:25.600" }
-                ]
+            {
+                "pos": 2,
+                "name": "FERNANDO GALLO",
+                "club": "VILAXUSO TEAM",
+                "car": "PORSCHE",
+                "cat": "N1",
+                "total": 473.70099999999996
             },
-            rally3: { title: "3ª PRUEBA: 14 DE NOVIEMBRE 2026", results: [] },
-            rally4: { title: "4ª PRUEBA: 12 DE DICIEMBRE 2026", results: [] }
-        };
+            {
+                "pos": 3,
+                "name": "SERGIO SOTO",
+                "club": "JSB RACING",
+                "car": "PORSCHE",
+                "cat": "N1",
+                "total": 474.32499999999993
+            },
+            {
+                "pos": 4,
+                "name": "DANIEL MORCUENDE",
+                "club": "LUME CARALLO",
+                "car": "PORSCHE",
+                "cat": "N1",
+                "total": 475.452
+            },
+            {
+                "pos": 5,
+                "name": "VICKY BURGO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT",
+                "cat": "N2",
+                "total": 476.121
+            },
+            {
+                "pos": 6,
+                "name": "JAVI SOTO",
+                "club": "JSB RACING",
+                "car": "FORD FOCUS",
+                "cat": "N2",
+                "total": 495.5799999999999
+            },
+            {
+                "pos": 7,
+                "name": "PABLO ANIDO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT",
+                "cat": "N2",
+                "total": 498.9
+            },
+            {
+                "pos": 8,
+                "name": "ASIER FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "MITSUBISHI",
+                "cat": "N2",
+                "total": 512.83
+            },
+            {
+                "pos": 9,
+                "name": "ÁNGEL COBAS",
+                "club": "SLOT LUCUS",
+                "car": "CLIO",
+                "cat": "N3",
+                "total": 516.2
+            },
+            {
+                "pos": 10,
+                "name": "ALEX FORMOSO",
+                "club": "",
+                "car": "CITROEN C4",
+                "cat": "N2",
+                "total": 517.27
+            },
+            {
+                "pos": 11,
+                "name": "LUIS",
+                "club": "SLOT LUCUS",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 529.96
+            },
+            {
+                "pos": 12,
+                "name": "SUSO BURGO",
+                "club": "SLOT LUCUS",
+                "car": "CLIO",
+                "cat": "N3",
+                "total": 537.515
+            },
+            {
+                "pos": 13,
+                "name": "BRAIS SOTO",
+                "club": "JSB RACING",
+                "car": "CITROEN C4",
+                "cat": "N2",
+                "total": 542.21
+            },
+            {
+                "pos": 14,
+                "name": "ÁNGEL COBAS",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT",
+                "cat": "AV1",
+                "total": 553.29
+            },
+            {
+                "pos": 15,
+                "name": "CARLOS REBOREDO",
+                "club": "ANCARES",
+                "car": "FERRARI",
+                "cat": "N1",
+                "total": 557.26
+            },
+            {
+                "pos": 16,
+                "name": "FERNANDO GALLO",
+                "club": "VILAXUSO TEAM",
+                "car": "MITSAUBISHI",
+                "cat": "AV1",
+                "total": 573.1800000000001
+            },
+            {
+                "pos": 17,
+                "name": "ALEX FORMOSO",
+                "club": "",
+                "car": "PEUGEOT",
+                "cat": "AV1",
+                "total": 582.79
+            },
+            {
+                "pos": 18,
+                "name": "ASIER FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT",
+                "cat": "AV1",
+                "total": 603.82
+            },
+            {
+                "pos": 19,
+                "name": "LUPE",
+                "club": "SLOT LUCUS",
+                "car": "SUBARU",
+                "cat": "N2",
+                "total": 603.92
+            },
+            {
+                "pos": 20,
+                "name": "VICKY BURGO",
+                "club": "SLOT LUCUS",
+                "car": "MITSUBISHI",
+                "cat": "AV1",
+                "total": 606.53
+            },
+            {
+                "pos": 21,
+                "name": "PABLO ANIDO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT",
+                "cat": "AV1",
+                "total": 618.5699999999999
+            },
+            {
+                "pos": 22,
+                "name": "JAVI SOTO",
+                "club": "JSB RACING",
+                "car": "PEUGEOT",
+                "cat": "AV1",
+                "total": 619.21
+            },
+            {
+                "pos": 23,
+                "name": "CARLOS REBOREDO",
+                "club": "ANCARES",
+                "car": "ALPINE",
+                "cat": "AV1",
+                "total": 639.5699999999999
+            },
+            {
+                "pos": 24,
+                "name": "MARCOS DUCHEL",
+                "club": "LUME CARALLO",
+                "car": "FORD FOCUS",
+                "cat": "N2",
+                "total": 654.19
+            },
+            {
+                "pos": 25,
+                "name": "BRAIS SOTO",
+                "club": "JSB RACING",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 663.5799999999999
+            },
+            {
+                "pos": 26,
+                "name": "SERGIO SOTO",
+                "club": "JSB RACING",
+                "car": "FORD SIERRA",
+                "cat": "AV1",
+                "total": 679.999
+            },
+            {
+                "pos": 27,
+                "name": "LUPE",
+                "club": "SLOT LUCUS",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 713.7600000000001
+            },
+            {
+                "pos": 28,
+                "name": "JORGE",
+                "club": "VALVERDERING",
+                "car": "GOLF",
+                "cat": "N2",
+                "total": 730.56
+            },
+            {
+                "pos": 29,
+                "name": "JORGE",
+                "club": "VALVERDERING",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 735.26
+            },
+            {
+                "pos": 30,
+                "name": "SUSO BURGO",
+                "club": "SLOT LUCUS",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 827.08
+            },
+            {
+                "pos": 31,
+                "name": "ARTAI FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "SKODA FABIA",
+                "cat": "INF",
+                "total": 1021.0989999999999
+            },
+            {
+                "pos": 32,
+                "name": "IAGO FORMOSO",
+                "club": "",
+                "car": "PEUGEOT",
+                "cat": "INF",
+                "total": 1182.194
+            }
+        ]
+    },
+    "rally2": {
+        "title": "2ª PRUEBA: 3 DE OCTUBRE 2026",
+        "results": [
+            {
+                "pos": 1,
+                "name": "JUAN MARZOA",
+                "club": "SLOT LUCUS",
+                "car": "Citroën C4 WRC",
+                "cat": "N2",
+                "total": 437.10999999999996
+            },
+            {
+                "pos": 2,
+                "name": "LUIS",
+                "club": "SLOT LUCUS",
+                "car": "Citroën C4 WRC",
+                "cat": "N2",
+                "total": 444.48
+            },
+            {
+                "pos": 3,
+                "name": "VICKY BURGO",
+                "club": "SLOT LUCUS",
+                "car": "Peugeot 307 Wrc",
+                "cat": "N2",
+                "total": 452.1700000000001
+            },
+            {
+                "pos": 4,
+                "name": "PABLO ANIDO",
+                "club": "SLOT LUCUS",
+                "car": "Citroën C4 WRC",
+                "cat": "N2",
+                "total": 459.63
+            },
+            {
+                "pos": 5,
+                "name": "FERNANDO GALLO",
+                "club": "VILAXUSO TEAM",
+                "car": "Porsche 911 Gt3",
+                "cat": "N1",
+                "total": 460.32
+            },
+            {
+                "pos": 6,
+                "name": "CARLOS REBOREDO",
+                "club": "ANCARES",
+                "car": "Ferrari 360 Módena",
+                "cat": "N1",
+                "total": 465.12
+            },
+            {
+                "pos": 7,
+                "name": "SERGIO SOTO",
+                "club": "JSB RACING",
+                "car": "Porsche 911 Gt3",
+                "cat": "N1",
+                "total": 465.89
+            },
+            {
+                "pos": 8,
+                "name": "ASIER FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "Mitsubishi Wrc",
+                "cat": "N2",
+                "total": 471.1
+            },
+            {
+                "pos": 9,
+                "name": "ALEX FORMOSO",
+                "club": "",
+                "car": "Citroën C4 WRC",
+                "cat": "N2",
+                "total": 482.39000000000004
+            },
+            {
+                "pos": 10,
+                "name": "JAVI SOTO",
+                "club": "JSB RACING",
+                "car": "Ford Focus Wrc",
+                "cat": "N2",
+                "total": 485.4
+            },
+            {
+                "pos": 11,
+                "name": "DANIEL MORCUENDE",
+                "club": "LUME CARALLO",
+                "car": "Porsche 911 Gt3",
+                "cat": "N1",
+                "total": 489.37
+            },
+            {
+                "pos": 12,
+                "name": "LUIS BURGO",
+                "club": "SLOT LUCUS",
+                "car": "Renault Clio",
+                "cat": "N3",
+                "total": 496.23
+            },
+            {
+                "pos": 13,
+                "name": "BRAIS SOTO",
+                "club": "JSB RACING",
+                "car": "Citroën C4 WRC",
+                "cat": "N2",
+                "total": 500.54
+            },
+            {
+                "pos": 14,
+                "name": "LUIS",
+                "club": "SLOT LUCUS",
+                "car": "Toyota Yaris",
+                "cat": "AV1",
+                "total": 504.62
+            },
+            {
+                "pos": 15,
+                "name": "ÁNGEL COBAS",
+                "club": "SLOT LUCUS",
+                "car": "Citroën Saxo",
+                "cat": "N3",
+                "total": 505.9599999999999
+            },
+            {
+                "pos": 16,
+                "name": "LEO LONGUEIRA",
+                "club": "TEMPLE RACING",
+                "car": "Peugeot 307 Wrc",
+                "cat": "N2",
+                "total": 525.45
+            },
+            {
+                "pos": 17,
+                "name": "FERNANDO GALLO",
+                "club": "VILAXUSO TEAM",
+                "car": "Mitsubishi Evo X",
+                "cat": "AV1",
+                "total": 526.96
+            },
+            {
+                "pos": 18,
+                "name": "JUAN MARZOA",
+                "club": "SLOT LUCUS",
+                "car": "Ferrari 308 Gtb",
+                "cat": "AV2",
+                "total": 541.1
+            },
+            {
+                "pos": 19,
+                "name": "LUPE",
+                "club": "SLOT LUCUS",
+                "car": "Subaru Impreza Wrc",
+                "cat": "N2",
+                "total": 545.61
+            },
+            {
+                "pos": 20,
+                "name": "ASIER FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "Peugeot 306 Kit Car",
+                "cat": "AV1",
+                "total": 554.95
+            },
+            {
+                "pos": 21,
+                "name": "ALEX FORMOSO",
+                "club": "",
+                "car": "Peugeot 306 Kit Car",
+                "cat": "AV1",
+                "total": 557.54
+            },
+            {
+                "pos": 22,
+                "name": "PABLO ANIDO",
+                "club": "SLOT LUCUS",
+                "car": "Peugeot 306 Kit Car",
+                "cat": "AV1",
+                "total": 562.5889999999999
+            },
+            {
+                "pos": 23,
+                "name": "JOSE CEBREIRO",
+                "club": "ARTABRIA SLOT",
+                "car": "Citroën C4 WRC",
+                "cat": "N2",
+                "total": 573.21
+            },
+            {
+                "pos": 24,
+                "name": "DANIEL MORCUENDE",
+                "club": "LUME CARALLO",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 582.049
+            },
+            {
+                "pos": 25,
+                "name": "MARCOS DUCHEL",
+                "club": "LUME CARALLO",
+                "car": "Ford Focus Wrc",
+                "cat": "N2",
+                "total": 600.45
+            },
+            {
+                "pos": 26,
+                "name": "JOSE CEBREIRO",
+                "club": "ARTABRIA SLOT",
+                "car": "Peugeot 306 Kit Car",
+                "cat": "AV1",
+                "total": 614.4300000000001
+            },
+            {
+                "pos": 27,
+                "name": "SERGIO SOTO",
+                "club": "JSB RACING",
+                "car": "Ford Sierra",
+                "cat": "AV1",
+                "total": 614.6129999999999
+            },
+            {
+                "pos": 28,
+                "name": "CARLOS REBOREDO",
+                "club": "ANCARES",
+                "car": "Alpine A310",
+                "cat": "AV1",
+                "total": 616.6600000000001
+            },
+            {
+                "pos": 29,
+                "name": "BRAIS SOTO",
+                "club": "JSB RACING",
+                "car": "Toyota Yaris",
+                "cat": "AV1",
+                "total": 618.74
+            },
+            {
+                "pos": 30,
+                "name": "LUPE",
+                "club": "SLOT LUCUS",
+                "car": "Toyota Yaris",
+                "cat": "AV1",
+                "total": 634.018
+            },
+            {
+                "pos": 31,
+                "name": "NOEL",
+                "club": "LUME CARALLO",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 639.11
+            },
+            {
+                "pos": 32,
+                "name": "LEO LONGUEIRA",
+                "club": "TEMPLE RACING",
+                "car": "Toyota Yaris",
+                "cat": "AV1",
+                "total": 639.402
+            },
+            {
+                "pos": 33,
+                "name": "MARCOS DUCHEL",
+                "club": "LUME CARALLO",
+                "car": "FORD SIERRA",
+                "cat": "AV1",
+                "total": 699.0699999999999
+            },
+            {
+                "pos": 34,
+                "name": "JORGE",
+                "club": "VALVERDERING",
+                "car": "Toyota Yaris",
+                "cat": "AV1",
+                "total": 721.152
+            },
+            {
+                "pos": 35,
+                "name": "VICKY BURGO",
+                "club": "SLOT LUCUS",
+                "car": "Mitsubishi Evo X",
+                "cat": "AV1",
+                "total": 730.9200000000001
+            },
+            {
+                "pos": 36,
+                "name": "JAVI SOTO",
+                "club": "JSB RACING",
+                "car": "Peugeot 206",
+                "cat": "AV1",
+                "total": 734.8299999999999
+            },
+            {
+                "pos": 37,
+                "name": "LUIS BURGO",
+                "club": "SLOT LUCUS",
+                "car": "Bmw 2002",
+                "cat": "AV2",
+                "total": 767.15
+            },
+            {
+                "pos": 38,
+                "name": "ÁNGEL COBAS",
+                "club": "SLOT LUCUS",
+                "car": "Peugeot 306 Kit Car",
+                "cat": "AV1",
+                "total": 862.0999999999999
+            },
+            {
+                "pos": 39,
+                "name": "ARTAI FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "SKODA FABIA",
+                "cat": "INF",
+                "total": 1083.23
+            },
+            {
+                "pos": 40,
+                "name": "IAGO FORMOSO",
+                "club": "",
+                "car": "PEUGEOT 208",
+                "cat": "INF",
+                "total": 1121.4
+            },
+            {
+                "pos": 41,
+                "name": "CLARA ANIDO",
+                "club": "FANDYS GARAGE",
+                "car": "MITSUBISHI LANCER",
+                "cat": "INF",
+                "total": 1268.01
+            },
+            {
+                "pos": 42,
+                "name": "JORGE",
+                "club": "VALVERDERING",
+                "car": "VW Golf",
+                "cat": "N2",
+                "total": 1998.0
+            }
+        ]
+    },
+    "rally3": {
+        "title": "3ª PRUEBA: 14 DE NOVIEMBRE 2026",
+        "results": [
+            {
+                "pos": 1,
+                "name": "JUAN MARZOA",
+                "club": "SLOT LUCUS",
+                "car": "CITROEN C4 WRC",
+                "cat": "N2",
+                "total": 423.14
+            },
+            {
+                "pos": 2,
+                "name": "VICKY BURGO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT 307 WRC",
+                "cat": "N2",
+                "total": 424.03999999999996
+            },
+            {
+                "pos": 3,
+                "name": "FERNANDO GALLO",
+                "club": "VILAXUSO TEAM",
+                "car": "PORCHE 911 GT3",
+                "cat": "N1",
+                "total": 436.43000000000006
+            },
+            {
+                "pos": 4,
+                "name": "SERGIO SOTO",
+                "club": "JSB RACING",
+                "car": "PORCHE 911 GT3",
+                "cat": "N1",
+                "total": 444.022
+            },
+            {
+                "pos": 5,
+                "name": "DANIEL MORCUENDE",
+                "club": "LUME CARALLO",
+                "car": "PORCHE 911 GT3",
+                "cat": "N1",
+                "total": 454.064
+            },
+            {
+                "pos": 6,
+                "name": "JAVI SOTO",
+                "club": "JSB RACING",
+                "car": "FORD FOCUS WRC",
+                "cat": "N2",
+                "total": 454.178
+            },
+            {
+                "pos": 7,
+                "name": "PABLO ANIDO",
+                "club": "SLOT LUCUS",
+                "car": "CITROEN C4 WRC",
+                "cat": "N2",
+                "total": 456.40700000000004
+            },
+            {
+                "pos": 8,
+                "name": "CARLOS REBOREDO",
+                "club": "ANCARES",
+                "car": "FERRARI 360",
+                "cat": "N1",
+                "total": 456.63
+            },
+            {
+                "pos": 9,
+                "name": "ALEX FORMOSO",
+                "club": "",
+                "car": "CITROEN C4 WRC",
+                "cat": "N2",
+                "total": 462.532
+            },
+            {
+                "pos": 10,
+                "name": "LEO LONGUEIRA",
+                "club": "TEMPLE RACING",
+                "car": "PEUGEOT 307 WRC",
+                "cat": "N2",
+                "total": 484.779
+            },
+            {
+                "pos": 11,
+                "name": "ASIER FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "MITSUBISHI LANCER",
+                "cat": "N2",
+                "total": 490.463
+            },
+            {
+                "pos": 12,
+                "name": "BRAIS SOTO",
+                "club": "JSB RACING",
+                "car": "CITROEN C4 WRC",
+                "cat": "N2",
+                "total": 512.3040000000001
+            },
+            {
+                "pos": 13,
+                "name": "NOEL",
+                "club": "LUME CARALLO",
+                "car": "FORD FOCUS WRC",
+                "cat": "N2",
+                "total": 562.9
+            },
+            {
+                "pos": 14,
+                "name": "JORGE",
+                "club": "VALVERDERING",
+                "car": "WV GOLF",
+                "cat": "N2",
+                "total": 598.8
+            },
+            {
+                "pos": 15,
+                "name": "VICKY BURGO",
+                "club": "SLOT LUCUS",
+                "car": "MITSUBISHI LANCER",
+                "cat": "AV1",
+                "total": 611.94
+            },
+            {
+                "pos": 16,
+                "name": "JUAN MARZOA",
+                "club": "SLOT LUCUS",
+                "car": "FERRARI 308 GTB",
+                "cat": "AV2",
+                "total": 647.4
+            },
+            {
+                "pos": 17,
+                "name": "FERNANDO GALLO",
+                "club": "VILAXUSO TEAM",
+                "car": "MITSUBISHI LANCER",
+                "cat": "AV1",
+                "total": 654.26
+            },
+            {
+                "pos": 18,
+                "name": "ASIER FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT 306 MAXI",
+                "cat": "AV1",
+                "total": 656.1949999999999
+            },
+            {
+                "pos": 19,
+                "name": "PABLO ANIDO",
+                "club": "SLOT LUCUS",
+                "car": "PEUGEOT 306 MAXI",
+                "cat": "AV1",
+                "total": 684.175
+            },
+            {
+                "pos": 20,
+                "name": "DANIEL MORCUENDE",
+                "club": "LUME CARALLO",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 692.29
+            },
+            {
+                "pos": 21,
+                "name": "LEO LONGUEIRA",
+                "club": "TEMPLE RACING",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 733.522
+            },
+            {
+                "pos": 22,
+                "name": "SERGIO SOTO",
+                "club": "JSB RACING",
+                "car": "FORD SIERRA",
+                "cat": "AV1",
+                "total": 736.3799999999999
+            },
+            {
+                "pos": 23,
+                "name": "ALEX FORMOSO",
+                "club": "0",
+                "car": "PEUGEOT 306 MAXI",
+                "cat": "AV1",
+                "total": 740.299
+            },
+            {
+                "pos": 24,
+                "name": "CARLOS REBOREDO",
+                "club": "ANCARES",
+                "car": "ALPINE A-310",
+                "cat": "AV2",
+                "total": 744.76
+            },
+            {
+                "pos": 25,
+                "name": "NOEL",
+                "club": "LUME CARALLO",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 750.925
+            },
+            {
+                "pos": 26,
+                "name": "JAVI SOTO",
+                "club": "JSB RACING",
+                "car": "PEUGEOT 207 S2000",
+                "cat": "AV1",
+                "total": 754.54
+            },
+            {
+                "pos": 27,
+                "name": "BRAIS SOTO",
+                "club": "JSB RACING",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 827.75
+            },
+            {
+                "pos": 28,
+                "name": "JORGE",
+                "club": "VALVERDERING",
+                "car": "TOYOTA YARIS",
+                "cat": "AV1",
+                "total": 846.46
+            },
+            {
+                "pos": 29,
+                "name": "IAGO FORMOSO",
+                "club": "",
+                "car": "PEUGEOT 208",
+                "cat": "INF",
+                "total": 1215.79
+            },
+            {
+                "pos": 30,
+                "name": "ARTAI FEIJOO",
+                "club": "SLOT LUCUS",
+                "car": "SKODA FABIA R5",
+                "cat": "INF",
+                "total": 1220.0300000000002
+            },
+            {
+                "pos": 31,
+                "name": "CARLA ROZAS",
+                "club": "FANDYS GARAGE",
+                "car": "MITSUBISHI LANCER",
+                "cat": "INF",
+                "total": 1292.39
+            },
+            {
+                "pos": 32,
+                "name": "MATEO ROZAS",
+                "club": "FANDYS GARAGE",
+                "car": "MITSUBISHI LANCER",
+                "cat": "INF",
+                "total": 1445.436
+            },
+            {
+                "pos": 33,
+                "name": "CLARA ANIDO",
+                "club": "FANDYS GARAGE",
+                "car": "MITSUBISHI LANCER",
+                "cat": "INF",
+                "total": 1690.85
+            }
+        ]
+    },
+    "rally4": {
+        "title": "4ª PRUEBA: 12 DE DICIEMBRE 2026",
+        "results": []
+    }
+};
 
         const mockStandingsData = {
-            N1: [
-                { pos: 1, name: "Carlos Sainz Jr.", r1: 25, r2: 18, r3: 0, r4: 0, total: 43 },
-                { pos: 2, name: "Roberto Alonso", r1: 18, r2: 25, r3: 0, r4: 0, total: 43 }
-            ],
-            AV1: [
-                { pos: 1, name: "Lucas López", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 },
-                { pos: 2, name: "David Rodríguez", r1: 18, r2: 18, r3: 0, r4: 0, total: 36 }
-            ],
-            N2: [
-                { pos: 1, name: "Marcos García", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
-            ],
-            N3: [
-                { pos: 1, name: "Adrián Gómez", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
-            ],
-            AV2: [
-                { pos: 1, name: "Diego Fernández", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
-            ],
-            INF: [
-                { pos: 1, name: "Mateo Pérez (Infantil)", r1: 25, r2: 25, r3: 0, r4: 0, total: 50 }
-            ]
-        };
+    "N1": [
+        {
+            "name": "FERNANDO GALLO",
+            "club": "VILAXUSO TEAM",
+            "r1": 25,
+            "r2": 25,
+            "r3": 25,
+            "r4": 0,
+            "total": 75,
+            "pos": 1
+        },
+        {
+            "name": "SERGIO SOTO",
+            "club": "JSB RACING",
+            "r1": 18,
+            "r2": 15,
+            "r3": 18,
+            "r4": 0,
+            "total": 51,
+            "pos": 2
+        },
+        {
+            "name": "DANIEL MORCUENDE",
+            "club": "LUME CARALLO",
+            "r1": 15,
+            "r2": 12,
+            "r3": 15,
+            "r4": 0,
+            "total": 42,
+            "pos": 3
+        },
+        {
+            "name": "CARLOS REBOREDO",
+            "club": "ANCARES",
+            "r1": 12,
+            "r2": 18,
+            "r3": 12,
+            "r4": 0,
+            "total": 42,
+            "pos": 4
+        }
+    ],
+    "N2": [
+        {
+            "name": "VICKY BURGO",
+            "club": "SLOT LUCUS",
+            "r1": 18,
+            "r2": 15,
+            "r3": 18,
+            "r4": 0,
+            "total": 51,
+            "pos": 1
+        },
+        {
+            "name": "JUAN MARZOA",
+            "club": "SLOT LUCUS",
+            "r1": 0,
+            "r2": 25,
+            "r3": 25,
+            "r4": 0,
+            "total": 50,
+            "pos": 2
+        },
+        {
+            "name": "LUIS",
+            "club": "SLOT LUCUS",
+            "r1": 25,
+            "r2": 18,
+            "r3": 0,
+            "r4": 0,
+            "total": 43,
+            "pos": 3
+        },
+        {
+            "name": "JAVI SOTO",
+            "club": "JSB RACING",
+            "r1": 15,
+            "r2": 6,
+            "r3": 15,
+            "r4": 0,
+            "total": 36,
+            "pos": 4
+        },
+        {
+            "name": "PABLO ANIDO",
+            "club": "SLOT LUCUS",
+            "r1": 12,
+            "r2": 12,
+            "r3": 12,
+            "r4": 0,
+            "total": 36,
+            "pos": 5
+        },
+        {
+            "name": "ALEX FORMOSO",
+            "club": "",
+            "r1": 8,
+            "r2": 8,
+            "r3": 10,
+            "r4": 0,
+            "total": 26,
+            "pos": 6
+        },
+        {
+            "name": "ASIER FEIJOO",
+            "club": "SLOT LUCUS",
+            "r1": 10,
+            "r2": 10,
+            "r3": 6,
+            "r4": 0,
+            "total": 26,
+            "pos": 7
+        },
+        {
+            "name": "BRAIS SOTO",
+            "club": "JSB RACING",
+            "r1": 6,
+            "r2": 5,
+            "r3": 5,
+            "r4": 0,
+            "total": 16,
+            "pos": 8
+        },
+        {
+            "name": "LEO LONGUEIRA",
+            "club": "TEMPLE RACING",
+            "r1": 0,
+            "r2": 4,
+            "r3": 8,
+            "r4": 0,
+            "total": 12,
+            "pos": 9
+        },
+        {
+            "name": "LUPE",
+            "club": "SLOT LUCUS",
+            "r1": 5,
+            "r2": 3,
+            "r3": 0,
+            "r4": 0,
+            "total": 8,
+            "pos": 10
+        },
+        {
+            "name": "JORGE",
+            "club": "VALVERDERING",
+            "r1": 3,
+            "r2": 0,
+            "r3": 3,
+            "r4": 0,
+            "total": 6,
+            "pos": 11
+        },
+        {
+            "name": "MARCOS DUCHEL",
+            "club": "LUME CARALLO",
+            "r1": 4,
+            "r2": 1,
+            "r3": 0,
+            "r4": 0,
+            "total": 5,
+            "pos": 12
+        },
+        {
+            "name": "NOEL",
+            "club": "LUME CARALLO",
+            "r1": 0,
+            "r2": 0,
+            "r3": 4,
+            "r4": 0,
+            "total": 4,
+            "pos": 13
+        },
+        {
+            "name": "JOSE CEBREIRO",
+            "club": "ARTABRIA SLOT",
+            "r1": 0,
+            "r2": 2,
+            "r3": 0,
+            "r4": 0,
+            "total": 2,
+            "pos": 14
+        }
+    ],
+    "N3": [
+        {
+            "name": "ÁNGEL COBAS",
+            "club": "SLOT LUCUS",
+            "r1": 25,
+            "r2": 18,
+            "r3": 0,
+            "r4": 0,
+            "total": 43,
+            "pos": 1
+        },
+        {
+            "name": "LUIS BURGO",
+            "club": "SLOT LUCUS",
+            "r1": 0,
+            "r2": 25,
+            "r3": 0,
+            "r4": 0,
+            "total": 25,
+            "pos": 2
+        },
+        {
+            "name": "SUSO BURGO",
+            "club": "SLOT LUCUS",
+            "r1": 18,
+            "r2": 0,
+            "r3": 0,
+            "r4": 0,
+            "total": 18,
+            "pos": 3
+        }
+    ],
+    "AV1": [
+        {
+            "name": "FERNANDO GALLO",
+            "club": "VILAXUSO TEAM",
+            "r1": 15,
+            "r2": 18,
+            "r3": 18,
+            "r4": 0,
+            "total": 51,
+            "pos": 1
+        },
+        {
+            "name": "LUIS",
+            "club": "SLOT LUCUS",
+            "r1": 25,
+            "r2": 25,
+            "r3": 0,
+            "r4": 0,
+            "total": 50,
+            "pos": 2
+        },
+        {
+            "name": "ASIER FEIJOO",
+            "club": "SLOT LUCUS",
+            "r1": 10,
+            "r2": 15,
+            "r3": 15,
+            "r4": 0,
+            "total": 40,
+            "pos": 3
+        },
+        {
+            "name": "VICKY BURGO",
+            "club": "SLOT LUCUS",
+            "r1": 8,
+            "r2": 0,
+            "r3": 25,
+            "r4": 0,
+            "total": 33,
+            "pos": 4
+        },
+        {
+            "name": "ALEX FORMOSO",
+            "club": "",
+            "r1": 12,
+            "r2": 12,
+            "r3": 5,
+            "r4": 0,
+            "total": 29,
+            "pos": 5
+        },
+        {
+            "name": "PABLO ANIDO",
+            "club": "SLOT LUCUS",
+            "r1": 6,
+            "r2": 10,
+            "r3": 12,
+            "r4": 0,
+            "total": 28,
+            "pos": 6
+        },
+        {
+            "name": "DANIEL MORCUENDE",
+            "club": "LUME CARALLO",
+            "r1": 0,
+            "r2": 8,
+            "r3": 10,
+            "r4": 0,
+            "total": 18,
+            "pos": 7
+        },
+        {
+            "name": "ÁNGEL COBAS",
+            "club": "SLOT LUCUS",
+            "r1": 18,
+            "r2": 0,
+            "r3": 0,
+            "r4": 0,
+            "total": 18,
+            "pos": 8
+        },
+        {
+            "name": "SERGIO SOTO",
+            "club": "JSB RACING",
+            "r1": 2,
+            "r2": 5,
+            "r3": 6,
+            "r4": 0,
+            "total": 13,
+            "pos": 9
+        },
+        {
+            "name": "LEO LONGUEIRA",
+            "club": "TEMPLE RACING",
+            "r1": 0,
+            "r2": 0,
+            "r3": 8,
+            "r4": 0,
+            "total": 8,
+            "pos": 10
+        },
+        {
+            "name": "JAVI SOTO",
+            "club": "JSB RACING",
+            "r1": 5,
+            "r2": 0,
+            "r3": 3,
+            "r4": 0,
+            "total": 8,
+            "pos": 11
+        },
+        {
+            "name": "BRAIS SOTO",
+            "club": "JSB RACING",
+            "r1": 3,
+            "r2": 3,
+            "r3": 2,
+            "r4": 0,
+            "total": 8,
+            "pos": 12
+        },
+        {
+            "name": "CARLOS REBOREDO",
+            "club": "ANCARES",
+            "r1": 4,
+            "r2": 4,
+            "r3": 0,
+            "r4": 0,
+            "total": 8,
+            "pos": 13
+        },
+        {
+            "name": "JOSE CEBREIRO",
+            "club": "ARTABRIA SLOT",
+            "r1": 0,
+            "r2": 6,
+            "r3": 0,
+            "r4": 0,
+            "total": 6,
+            "pos": 14
+        },
+        {
+            "name": "NOEL",
+            "club": "LUME CARALLO",
+            "r1": 0,
+            "r2": 1,
+            "r3": 4,
+            "r4": 0,
+            "total": 5,
+            "pos": 15
+        },
+        {
+            "name": "LUPE",
+            "club": "SLOT LUCUS",
+            "r1": 1,
+            "r2": 2,
+            "r3": 0,
+            "r4": 0,
+            "total": 3,
+            "pos": 16
+        },
+        {
+            "name": "JORGE",
+            "club": "VALVERDERING",
+            "r1": 0,
+            "r2": 0,
+            "r3": 1,
+            "r4": 0,
+            "total": 1,
+            "pos": 17
+        },
+        {
+            "name": "MARCOS DUCHEL",
+            "club": "LUME CARALLO",
+            "r1": 0,
+            "r2": 0,
+            "r3": 0,
+            "r4": 0,
+            "total": 0,
+            "pos": 18
+        },
+        {
+            "name": "SUSO BURGO",
+            "club": "SLOT LUCUS",
+            "r1": 0,
+            "r2": 0,
+            "r3": 0,
+            "r4": 0,
+            "total": 0,
+            "pos": 19
+        }
+    ],
+    "AV2": [
+        {
+            "name": "JUAN MARZOA",
+            "club": "SLOT LUCUS",
+            "r1": 0,
+            "r2": 25,
+            "r3": 25,
+            "r4": 0,
+            "total": 50,
+            "pos": 1
+        },
+        {
+            "name": "CARLOS REBOREDO",
+            "club": "ANCARES",
+            "r1": 0,
+            "r2": 0,
+            "r3": 18,
+            "r4": 0,
+            "total": 18,
+            "pos": 2
+        },
+        {
+            "name": "LUIS BURGO",
+            "club": "SLOT LUCUS",
+            "r1": 0,
+            "r2": 18,
+            "r3": 0,
+            "r4": 0,
+            "total": 18,
+            "pos": 3
+        }
+    ],
+    "INF": [
+        {
+            "name": "ARTAI FEIJOO",
+            "club": "SLOT LUCUS",
+            "r1": 25,
+            "r2": 25,
+            "r3": 18,
+            "r4": 0,
+            "total": 68,
+            "pos": 1
+        },
+        {
+            "name": "IAGO FORMOSO",
+            "club": "",
+            "r1": 18,
+            "r2": 18,
+            "r3": 25,
+            "r4": 0,
+            "total": 61,
+            "pos": 2
+        },
+        {
+            "name": "CLARA ANIDO",
+            "club": "FANDYS GARAGE",
+            "r1": 0,
+            "r2": 15,
+            "r3": 10,
+            "r4": 0,
+            "total": 25,
+            "pos": 3
+        },
+        {
+            "name": "CARLA ROZAS",
+            "club": "FANDYS GARAGE",
+            "r1": 0,
+            "r2": 0,
+            "r3": 15,
+            "r4": 0,
+            "total": 15,
+            "pos": 4
+        },
+        {
+            "name": "MATEO ROZAS",
+            "club": "FANDYS GARAGE",
+            "r1": 0,
+            "r2": 0,
+            "r3": 12,
+            "r4": 0,
+            "total": 12,
+            "pos": 5
+        }
+    ]
+};
 
-        let currentRallyKey = 'rally1';
+        let currentRallyKey = 'rally3';
 
         function renderResults() {
             const tableBody = document.getElementById('resultsTableBody');
@@ -899,39 +2154,32 @@
             document.getElementById('currentEventTitle').textContent = data.title;
 
             if (!data.results || data.results.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-500 italic">Prueba aún no celebrada o sin tiempos registrados.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-gray-500 italic">Prueba aún no celebrada o sin tiempos registrados.</td></tr>`;
                 return;
             }
 
             const search = document.getElementById('driverSearch').value.toLowerCase();
             const cat = document.getElementById('categoryFilter').value;
-
             const filtered = data.results.filter(item => {
-                const matchesSearch = item.name.toLowerCase().includes(search) || item.car.toLowerCase().includes(search);
+                const matchesSearch = item.name.toLowerCase().includes(search) ||
+                    item.car.toLowerCase().includes(search) || item.club.toLowerCase().includes(search);
                 const matchesCat = cat === 'ALL' || item.cat === cat;
                 return matchesSearch && matchesCat;
             });
 
             if (filtered.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-500 italic">No se encontraron resultados para los filtros seleccionados.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-gray-500 italic">No se encontraron resultados para los filtros seleccionados.</td></tr>`;
                 return;
             }
 
             tableBody.innerHTML = filtered.map(item => `
                 <tr class="hover:bg-rally-cardHover transition">
                     <td class="p-3 text-center font-bold ${item.pos === 1 ? 'text-rally-gold' : 'text-gray-400'}">${item.pos}</td>
-                    <td class="p-3">
-                        <div class="font-bold text-white">${item.name}</div>
-                        <div class="text-[11px] text-gray-400 font-sans">${item.car}</div>
-                    </td>
-                    <td class="p-3 text-center">
-                        <span class="bg-black border border-rally-border px-2 py-0.5 rounded text-[10px] font-bold text-rally-gold">${item.cat}</span>
-                    </td>
-                    <td class="p-3 text-right text-gray-300">${item.e1}</td>
-                    <td class="p-3 text-right text-gray-300">${item.e2}</td>
-                    <td class="p-3 text-right ${item.pen !== '00:00.000' ? 'text-red-400' : 'text-gray-500'}">${item.pen}</td>
-                    <td class="p-3 text-right font-bold text-rally-gold">${item.total}</td>
-                    <td class="p-3 text-right text-gray-400 text-xs">${item.diff}</td>
+                    <td class="p-3 font-bold text-white">${item.name}</td>
+                    <td class="p-3 text-gray-400 text-xs">${item.club || '—'}</td>
+                    <td class="p-3 text-gray-300">${item.car}</td>
+                    <td class="p-3 text-center"><span class="bg-black border border-rally-border px-2 py-0.5 rounded text-[10px] font-bold text-rally-gold">${item.cat}</span></td>
+                    <td class="p-3 text-right font-bold text-rally-gold font-mono">${Number(item.total).toFixed(3).replace(/\.?0+$/, '')}</td>
                 </tr>
             `).join('');
         }
@@ -946,7 +2194,7 @@
             const data = mockStandingsData[cat] || [];
 
             if (data.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-gray-500 italic">No hay clasificación registrada para esta categoría.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-500 italic">No hay clasificación registrada para esta categoría.</td></tr>`;
                 return;
             }
 
@@ -954,10 +2202,11 @@
                 <tr class="hover:bg-rally-cardHover transition">
                     <td class="p-3 text-center font-bold ${item.pos === 1 ? 'text-rally-gold' : 'text-gray-400'}">${item.pos}</td>
                     <td class="p-3 font-bold text-white">${item.name}</td>
-                    <td class="p-3 text-center text-gray-300">${item.r1} pts</td>
-                    <td class="p-3 text-center text-gray-300">${item.r2} pts</td>
-                    <td class="p-3 text-center text-gray-300">${item.r3} pts</td>
-                    <td class="p-3 text-center text-gray-300">${item.r4} pts</td>
+                    <td class="p-3 text-gray-400 text-xs">${item.club || '—'}</td>
+                    <td class="p-3 text-center text-gray-300">${item.r1}</td>
+                    <td class="p-3 text-center text-gray-300">${item.r2}</td>
+                    <td class="p-3 text-center text-gray-300">${item.r3}</td>
+                    <td class="p-3 text-center text-gray-500">${item.r4}</td>
                     <td class="p-3 text-right font-bold text-rally-gold text-base">${item.total} pts</td>
                 </tr>
             `).join('');
